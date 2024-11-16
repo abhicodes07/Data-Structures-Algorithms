@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
     for (int j = size - 1; j >= pos - 1; j--) {
       arr[j + 1] = arr[j];
     }
-    arr[pos - 1] = val;
+    arr[pos - 1] = val; // insert value
     size++;
   }
 
