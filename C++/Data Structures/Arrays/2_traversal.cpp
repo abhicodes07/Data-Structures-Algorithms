@@ -16,8 +16,8 @@ int main(int argc, char *argv[]) {
   if (size > 100) {
     std::cout << "OverFlow!" << endl;
   } else {
-    std::cout << "\nEnter the elements of array: ";
     for (int i = 0; i < size; i++) {
+      std::cout << "\nEnter the " << i << " element of array: ";
       std::cin >> arr[i];
     }
   }
