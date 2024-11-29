@@ -20,3 +20,36 @@ Welcome to the Data Structures and Algorithms repository! This repository consis
   - C
 
 ## :pencil: Contents
+
+## 📈 Topics Covered
+
+<details><summary><b>Time Complexity</b></summary>
+
+- [x] Introduction
+- [x] Frequency Count Method
+- [x] Analysis of _For_ Loop
+- [x] Complexities of _For_ Loop
+- [x] Analysis of _if_ & _while_
+- [x] Types of function / Classes of Time function
+  - [x] Associativity
+- [x] Asymptotic Notations
+  - [x] Big-O Notation
+  - [x] Big-Ω Notation
+  - [x] Big-Θ Notation
+- [x] Properties of Asymptotic Notations
+  - [x] General Properties
+  - [x] Reflexive Property
+  - [x] Transitive Property
+  - [x] Symmetric Property
+  - [x] Transpose-Symmetric Property
+- [x] Comparison of Functions
+- [x] Case Analysis
+  - [x] Best-Case Analysis
+  - [x] Worst-Case Analysis
+  - [x] Average-Case Analysis
+- [x] Divide and Conquer
+  - [x] Divide
+  - [x] Conquer
+  - [x] Combine
+
+</details>
