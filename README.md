@@ -23,7 +23,7 @@ Welcome to the Data Structures and Algorithms repository! This repository consis
 
 ## 📈 Topics Covered
 
-<details><summary><b>Time Complexity</b></summary>
+<details><summary><b><i>Time Complexity</i></b></summary>
 
 - [x] Introduction
 - [x] Frequency Count Method
@@ -51,5 +51,17 @@ Welcome to the Data Structures and Algorithms repository! This repository consis
   - [x] Divide
   - [x] Conquer
   - [x] Combine
+
+---
+
+</details>
+
+<details><summary><b><i>Data Structures</i></b></summary>
+
+- [x] Array
+  - [x] Insertion
+  - [x] Traversal
+  - [x] Deletion
+  - [x] Searching
 
 </details>
