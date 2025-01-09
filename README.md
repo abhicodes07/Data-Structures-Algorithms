@@ -1,5 +1,13 @@
 # :rocket: Data Structures And Algorithm
 
+<!--toc:start-->
+
+- [:rocket: Data Structures And Algorithm](#rocket-data-structures-and-algorithm)
+  - [:notebook: What's Inside?](#notebook-whats-inside)
+  - [:pencil: Contents](#pencil-contents)
+  - [📈 Topics Covered](#📈-topics-covered)
+  <!--toc:end-->
+
 Welcome to the Data Structures and Algorithms repository! This repository consists of fundamental and advanced concepts, along with real-world coding problems to level up your problem-solving skills.
 
 ## :notebook: What's Inside?
