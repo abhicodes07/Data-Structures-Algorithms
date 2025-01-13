@@ -32,6 +32,7 @@ void append(int d) {
     printf("%d->", temp->data);
     temp = temp->next;
   }
+  printf("NULL");
 }
 
 int main(int argc, char *argv[]) {
