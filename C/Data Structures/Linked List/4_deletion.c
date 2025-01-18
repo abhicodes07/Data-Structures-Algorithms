@@ -11,6 +11,17 @@ struct Node *temp;
 struct Node *newnode;
 int count;
 
+/* Length of the linked list */
+int length() {
+  temp = head;
+  int len = 0;
+  while (temp != 0) {
+    temp = temp->next;
+    len++;
+  }
+  return len;
+}
+
 /* display list */
 void displayList() {
   printf("\nElements in the list: [ ");
@@ -20,6 +31,7 @@ void displayList() {
     temp = temp->next;
   }
   printf("NULL ]\n");
+  printf("Length: %d\n", length());
 }
 
 /* Create a linked list */
@@ -48,70 +60,6 @@ void createLinkedList() {
     }
   }
   displayList();
-}
-
-/*** INSERTION OPERATIONS ***/
-
-/* Insert node at the beginning */
-void insertAtBeginning(int item) {
-  newnode = (struct Node *)malloc(sizeof(struct Node));
-  newnode->data = item;
-  count++;
-
-  if (head == 0) {
-    head = newnode;
-    /*
-     * If there's only one node then
-     * no need to further execute
-     */
-    return;
-  } else {
-    newnode->next = head; // store the address of first node in the newnode
-    head = newnode;       // store address of new node into head
-  }
-}
-
-/* Insert node at the end */
-void insertAtEnd(int item) {
-  newnode = (struct Node *)malloc(sizeof(struct Node));
-  newnode->data = item;
-  count++;
-
-  if (head == 0) {
-    head = newnode;
-  } else {
-    temp = head;
-    while (temp->next != 0) {
-      temp = temp->next;
-    }
-    temp->next = newnode;
-  }
-}
-
-/* Insert node at certain position */
-void insertAtPosition(int item) {
-  newnode = (struct Node *)malloc(sizeof(struct Node));
-  newnode->data = item;
-  count++;
-  int pos, i = 0;
-
-  printf("Enter the position: ");
-  scanf("%d", &pos);
-
-  if (pos > count) {
-    printf("\nINVALID POSITION!");
-  } else if (pos == 0) {
-    newnode->next = head;
-    head = newnode;
-  } else {
-    temp = head;
-    while (i < pos - 1) {
-      temp = temp->next;
-      i++;
-    }
-    newnode->next = temp->next;
-    temp->next = newnode;
-  }
 }
 
 /*** DELETION OPERATIONS ***/
@@ -150,7 +98,7 @@ void deleteFromEnd() {
     free(temp);
   } else {
     prevnode->next = 0;
-    printf("\nDelete Node: [ %d ]", temp->data);
+    printf("\nDeleted Node: [ %d ]", temp->data);
     displayList();
     free(temp);
   }
@@ -170,13 +118,14 @@ void deleteFromPos(int position) {
 
   nextnode = temp->next;
   temp->next = nextnode->next;
-  printf("\nDelete Node: [ %d ]", nextnode->data);
-  free(nextnode);
+  printf("\nDeleted Node: [ %d ]", nextnode->data);
   displayList();
+  free(nextnode);
 }
 
 int main(int argc, char *argv[]) {
   createLinkedList();
+  deleteFromBeginning();
   deleteFromEnd();
   deleteFromPos(3);
   return 0;
