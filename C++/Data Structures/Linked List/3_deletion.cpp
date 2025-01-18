@@ -18,6 +18,17 @@ public:
   // Initialise head NULL
   LinkedList() { head = nullptr; }
 
+  /* Length of the linked list */
+  int length() {
+    Node *temp = head;
+    int len = 0;
+    while (temp != nullptr) {
+      temp = temp->next;
+      len++;
+    }
+    return len;
+  }
+
   /* Display Linked List */
   void displayList(void) {
     temp = head;
@@ -28,6 +39,7 @@ public:
       temp = temp->next;
     }
     cout << " NULL ]\n" << endl;
+    cout << "Length: " << length() << endl;
   }
 
   /* Create Linked List */
@@ -52,62 +64,6 @@ public:
         temp->next = newnode;
       }
     }
-    displayList();
-  }
-
-  /*** INSERTION OPERATIONS ***/
-
-  /* Insert at beginning of the list */
-  void insertAtBeginning(int item) {
-    Node *newnode = new Node();
-    newnode->data = item;
-    newnode->next = nullptr;
-    if (head == nullptr) {
-      head = newnode;
-    } else {
-      newnode->next = head;
-      head = newnode;
-    }
-    displayList();
-  }
-
-  /* Insert at the end of the linked list */
-  void insertAtEnd(int item) {
-    Node *newnode = new Node();
-    newnode->data = item;
-    newnode->next = nullptr;
-
-    if (head == nullptr) {
-      head = newnode;
-    } else {
-      temp = head;
-      while (temp->next != nullptr) {
-        temp = temp->next;
-      }
-      temp->next = newnode;
-    }
-    displayList();
-  }
-
-  /* Insert at specific position in the linked list */
-  void insertAtPosition(int item, int position) {
-    Node *newnode = new Node();
-    if (!newnode) {
-      exit(1);
-    }
-    newnode->data = item;
-    temp = head;
-    int count;
-    int i = 0;
-
-    newnode->next = nullptr;
-    while (i < position - 1) {
-      temp = temp->next;
-      i++;
-    }
-    newnode->next = temp->next;
-    temp->next = newnode;
-
     displayList();
   }
 
