@@ -26,11 +26,11 @@ class LinkedList:
                 self.head = newnode
             else:
                 # if list is not empty
-                temp = self.head
+                tail = self.head
                 # traverse till last node
-                while temp.next:
-                    temp = temp.next
-                temp.next = newnode
+                while tail.next:
+                    tail = tail.next
+                tail.next = newnode
 
         self.displayList()
 
@@ -38,13 +38,13 @@ class LinkedList:
         """
         Display elements in a Linked list
         """
-        temp = self.head
+        tail = self.head
 
         print("Elements in list: [ ", end=" ")
         # last node
-        while temp:
-            print(f"{temp.data}", end=" -> ")
-            temp = temp.next
+        while tail:
+            print(f"{tail.data}", end=" -> ")
+            tail = tail.next
         print("NULL ]")
 
     def insertAtBeginning(self, item: int):
@@ -72,11 +72,11 @@ class LinkedList:
         """
         newnode = Node(item)
 
-        temp = self.head
-        # traverse till last node till temp.next == NULL
-        while temp.next:
-            temp = temp.next
-        temp.next = newnode
+        tail = self.head
+        # traverse till last node till tail.next == NULL
+        while tail.next:
+            tail = tail.next
+        tail.next = newnode
 
         self.displayList()
 
@@ -88,7 +88,7 @@ class LinkedList:
         count = 0  # count the number of elements in the list
         i = 0
 
-        # use a temporary pointer to count the elements
+        # use a tailorary pointer to count the elements
         current = self.head
         while current:
             current = current.next
@@ -100,14 +100,14 @@ class LinkedList:
             print("INVALID POSITION")
             return
 
-        temp = self.head
+        tail = self.head
         # traverse till the specified position
         while i < position - 1:
-            temp = temp.next
+            tail = tail.next
             i += 1
         # update right nodes first then left ones
-        newnode.next = temp.next
-        temp.next = newnode
+        newnode.next = tail.next
+        tail.next = newnode
 
         self.displayList()
 
