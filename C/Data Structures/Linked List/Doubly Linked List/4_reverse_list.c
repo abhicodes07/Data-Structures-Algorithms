@@ -24,6 +24,7 @@ void display() {
 
 void createDLL() {
   head = NULL;
+  tail = NULL;
   int num;
   printf("Enter the number of nodes in the list: ");
   scanf("%d", &num);
@@ -37,13 +38,15 @@ void createDLL() {
 
     if (head == NULL) {
       head = newnode;
+      tail = newnode;
     } else {
-      tail = head;
-      while (tail->next != NULL) {
-        tail = tail->next;
+      temp = head;
+      while (temp->next != NULL) {
+        temp = temp->next;
       }
-      tail->next = newnode;
-      newnode->prev = tail;
+      temp->next = newnode;
+      newnode->prev = temp;
+      tail = newnode;
     }
   }
   display();
@@ -61,9 +64,10 @@ void reverse() {
     current->prev = nextnode;
     current = nextnode;
   }
-  nextnode = head;
+
+  temp = head;
   head = tail;
-  tail = nextnode;
+  tail = temp;
   display();
 }
 
