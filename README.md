@@ -71,5 +71,34 @@ Welcome to the Data Structures and Algorithms repository! This repository consis
   - [x] Traversal
   - [x] Deletion
   - [x] Searching
+  - [x] Reverse
+- [x] Pointer and Arrays
+- [x] Introduction to 2-D Arrays
+- [x] Pointers and 2-D Arrays
+- [ ] Linked List
+  - [x] Singly Linked List
+    - [x] Implementation
+    - [x] Insertion
+    - [x] Deletion
+    - [x] Traversal
+    - [x] Length
+    - [ ] Searching
+    - [x] Reverse
+  - [x] Doubly Linked List
+    - [x] Implementation
+    - [x] Insertion
+    - [x] Deletion
+    - [x] Traversal
+    - [x] Length
+    - [ ] Searching
+    - [x] Reverse
+  - [x] Circular Linked List
+    - [x] Implementation
+    - [x] Insertion
+    - [x] Deletion
+    - [x] Traversal
+    - [x] Length
+    - [ ] Searching
+    - [x] Reverse
 
 </details>
