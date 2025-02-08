@@ -76,11 +76,16 @@ void createCLL() {
 
 // delete from the beginning of the list
 void deleteFromBeg() {
+  temp = tail->next;
   if (tail == 0) {
     printf("List is already empty!");
     exit(0);
+  } else if (temp->next == temp) {
+    tail = 0;
+    printf("\n\nDeleted Node: [ %d ]", temp->data);
+    display();
+    free(temp);
   } else {
-    temp = tail->next;
     tail->next = temp->next;
     temp->next = 0;
     printf("\n\nDeleted Node: [ %d ]", temp->data);
