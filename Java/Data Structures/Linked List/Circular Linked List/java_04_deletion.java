@@ -156,7 +156,7 @@ class CircularLL {
   }
 }
 
-public class java_04_circular_LL {
+public class java_04_deletion {
   public static void main(String[] args) {
     CircularLL linked_list = new CircularLL();
     linked_list.createCll();
