@@ -76,7 +76,7 @@ class DoublyCircularLL:
         else:
             newnode.next = self.head
             newnode.prev = self.head.prev
-            self.head.next.prev = newnode
+            self.head.prev = newnode
             self.tail.next = newnode
             self.head = newnode
 
