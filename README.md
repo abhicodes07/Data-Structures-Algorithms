@@ -100,5 +100,13 @@ Welcome to the Data Structures and Algorithms repository! This repository consis
     - [x] Length
     - [ ] Searching
     - [x] Reverse
+  - [x] Doubly Circular Linked List
+    - [x] Implementation
+    - [x] Insertion
+    - [x] Deletion
+    - [x] Traversal
+    - [x] Length
+    - [ ] Searching
+    - [ ] Reverse
 
 </details>
