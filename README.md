@@ -75,7 +75,7 @@ Welcome to the Data Structures and Algorithms repository! This repository consis
 - [x] Pointer and Arrays
 - [x] Introduction to 2-D Arrays
 - [x] Pointers and 2-D Arrays
-- [ ] Linked List
+- [x] Linked List
   - [x] Singly Linked List
     - [x] Implementation
     - [x] Insertion
@@ -108,5 +108,8 @@ Welcome to the Data Structures and Algorithms repository! This repository consis
     - [x] Length
     - [ ] Searching
     - [ ] Reverse
+- [x] Stack
+  - [x] Stack using Array
+  - [x] Stack using Linked List
 
 </details>
