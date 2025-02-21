@@ -48,33 +48,27 @@ void peek() { printf("Top Element: [ %d ]\n", arr[TOP]); }
 
 // minimum
 void minimum() {
-  int i = 0;
-  int j = 0;
-  int min = 0;
-  while (i <= TOP && j <= TOP) {
-    if (arr[i] < arr[j + 1]) {
+  int min = arr[0];
+  int i = 1;
+  while (i <= TOP) {
+    if (arr[i] < min) {
       min = arr[i];
-      j++;
-    } else {
-      i++;
     }
+    i++;
   }
   printf("Minimum: %d\n", min);
 }
 
 // maximum
 void maximum() {
-  int i = 0;
-  int j = 0;
-  int max = 0;
+  int max = arr[0];
+  int i = 1;
 
-  while (i <= TOP && j <= TOP) {
-    if (arr[i] > arr[j + 1]) {
+  while (i <= TOP) {
+    if (arr[i] > max) {
       max = arr[i];
-      j++;
-    } else {
-      i++;
     }
+    i++;
   }
   printf("Maximum: %d\n", max);
 }
