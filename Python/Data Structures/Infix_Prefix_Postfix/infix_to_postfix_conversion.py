@@ -38,7 +38,7 @@ def infixToPostfix(equation: str):
             else:
                 while eq and (
                     precedence(i) < precedence(eq[-1])
-                    or precedence(i) == precedence(eq[-1])
+                    or (precedence(i) == precedence(eq[-1]) and i != "^")
                 ):
                     result += eq.pop()
                 eq.append(i)
