@@ -64,7 +64,9 @@ int main() {
   // given expression
   char e1[] = "A-B/C*D+E";
   char e2[] = "K+L-M*N+(O^P)*W/U/V*T+Q^J^A";
-  infix_to_postfix(e1);
-  infix_to_postfix(e2);
+  char e3[] = "A-B+(M^N)*(O+P)-Q/R^S*T+Z";
+  // infix_to_postfix(e1);
+  // infix_to_postfix(e2);
+  infix_to_postfix(e3);
   return 0;
 }
