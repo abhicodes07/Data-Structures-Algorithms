@@ -18,6 +18,7 @@ class Expression:
                 return value1 - value2
 
     def evalPrefix(self):
+        # in prefix scan from right to left
         stack = []
         rev = self.expr[::-1]  # reverse the list
 
@@ -32,13 +33,34 @@ class Expression:
 
         # pop the result from stack
         result = stack.pop()
-        print(f"Expression: {' '.join(self.expr)}")
+        print(f"Prefix Expression: {' '.join(self.expr)}")
         print(f"Result: {result}")
+        print()
 
     def evalPostfix(self):
-        pass
+        stack = []
+
+        for i in self.expr:
+            # push encountered operands to stack
+            if i.isalnum():
+                stack.append(int(i))
+            else:
+                val_2 = stack.pop()  # top value
+                val_1 = stack.pop()  # one next to top
+                stack.append(
+                    self.evaluate(i, val_1, val_2)
+                )  # push evaluated result to stack
+
+        # pop the result from stack
+        result = stack.pop()
+        print(f"Postfix Expression: {' '.join(self.expr)}")
+        print(f"Result: {result}")
+        print()
 
 
 if __name__ == "__main__":
-    e1 = Expression("- + 2 * 3 4 / 16 ^ 2 3")
-    e1.evalPrefix()
+    prefix = Expression("- + 2 * 3 4 / 16 ^ 2 3")
+    prefix.evalPrefix()
+
+    postfix = Expression("2 3 4 * + 16 2 3 ^ / -")
+    postfix.evalPostfix()
