@@ -2,7 +2,7 @@
 # AND ITERATIVE APPROACH
 
 
-def iterativeBinarSearch(seq, key: int):
+def iterativeBinarySearch(seq, key: int):
     """Binary search using iterative approach"""
 
     low = 0  # start of list
@@ -35,7 +35,7 @@ def iterativeBinarSearch(seq, key: int):
         print("Value not found.")
 
 
-def recuriseBinarySearch(seq, key: int, low: int, high: int):
+def recursiveBinarySearch(seq, key: int, low: int, high: int):
     """Binary search with recursive approach using divide and conquer"""
 
     # solve smaller problem
@@ -53,10 +53,10 @@ def recuriseBinarySearch(seq, key: int, low: int, high: int):
             return mid
         if seq[mid] > key:
             # serach in left side
-            return recuriseBinarySearch(seq, key, low, mid - 1)
+            return recursiveBinarySearch(seq, key, low, mid - 1)
         else:
             # search in right side
-            return recuriseBinarySearch(seq, key, mid + 1, high)
+            return recursiveBinarySearch(seq, key, mid + 1, high)
     return -1
 
 
@@ -67,9 +67,9 @@ def main():
     high = len(arr)
     val = 42
 
-    iterativeBinarSearch(arr, 17)
-    iterativeBinarSearch(arr, 31)
-    result = recuriseBinarySearch(arr, val, low, high)
+    iterativeBinarySearch(arr, 17)
+    iterativeBinarySearch(arr, 31)
+    result = recursiveBinarySearch(arr, val, low, high)
 
     if result != -1:
         print("VALUE FOUND")
