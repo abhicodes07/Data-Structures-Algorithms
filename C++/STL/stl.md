@@ -1,7 +1,5 @@
 # STL Libraries in C++
 
----
-
 **STL** Libraries are divided into four major parts:
 
 1. Algorithms
@@ -40,3 +38,27 @@ C++ containers are generally classified into three main categories:
 - `unordered_multiset` – Similar to unordered_set, but allows duplicates.
 - `unordered_map` – Stores key-value pairs using hashing.
 - `unordered_multimap` – Similar to unordered_map, but allows duplicate keys.
+
+# Maps
+
+In C++, the map is a container provided by the Standard Template Library (STL) that stores elements in key-value pairs. It is an ordered associative container, which means:
+
+- Each element is a pair of key and value.
+- **_Keys are unique._**
+- Elements are stored in a sorted order based on the key (by default, in ascending order using < operator).
+
+| Feature                       | Description                                 |
+| ----------------------------- | ------------------------------------------- |
+| **Key uniqueness**            | No duplicate keys allowed                   |
+| **Sorted order**              | Sorted by keys using `operator<`            |
+| **Underlying data structure** | Self-balancing BST (usually Red-Black Tree) |
+| **Time complexity**           | O(log n) for insertion, deletion, search    |
+
+- Map vs Unordered Map
+
+| Feature             | `map`              | `unordered_map`          |
+| ------------------- | ------------------ | ------------------------ |
+| **Ordering**        | Sorted (by key)    | No order                 |
+| **Time complexity** | O(log n)           | O(1) average, O(n) worst |
+| **Underlying DS**   | Red-Black Tree     | Hash table               |
+| **Use case**        | When order matters | When fast access matters |
