@@ -51,8 +51,10 @@ void mergeSort(int arr[], int low, int high) {
   if (low < high) {
     // calculate mid using much safer way for overflow conditions
     int mid = low + (high - low) / 2;
+    printf("Mid: %d\n", mid);
 
-    // conquer
+    // NOTE: keep dividing/conquering the list until there's only single element
+    // left then start merging.
     mergeSort(arr, low, mid);
     mergeSort(arr, mid + 1, high);
 
@@ -69,8 +71,8 @@ int main(void) {
   printf("List: [ ");
   display(list, high);
 
-  printf("Sorted: [ ");
   mergeSort(list, low, high - 1);
+  printf("Sorted: [ ");
   display(list, high);
 
   return 0;
