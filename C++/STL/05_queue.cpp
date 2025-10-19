@@ -21,5 +21,5 @@ void explainQueue() {
   // remove elements in FIFo order
   q.pop(); // removes 10
 
-  // size swap same as size
+  // size swap same as stack
 }
