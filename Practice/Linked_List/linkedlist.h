@@ -16,6 +16,7 @@ struct DoublyNode {
 };
 
 /* Singly Linked list and it's operations */
+struct SinglyNode *initSinglyNode(int data);
 struct SinglyNode *singly_linked_list();
 struct SinglyNode *insert_at_beg(struct SinglyNode *head, int data);
 struct SinglyNode *insert_at_end(struct SinglyNode *head, int data);
@@ -25,13 +26,16 @@ struct SinglyNode *delete_from_end(struct SinglyNode *head);
 struct SinglyNode *delete_from_pos(struct SinglyNode *head);
 
 /* Doubly linked list and it's operations */
+struct DoublyNode *initDoublyNode(int data);
 struct DoublyNode *doubly_linked_list();
-struct DoublyNode *insert_at_beg(struct DoublyNode *head, int data);
-struct DoublyNode *insert_at_end(struct DoublyNode *head, int data);
-struct DoublyNode *insert_at_pos(struct DoublyNode *head, int data, int pos);
-struct DoublyNode *delete_at_beg(struct DoublyNode *head);
-struct DoublyNode *delete_at_end(struct DoublyNode *head);
-struct DoublyNode *delete_at_pos(struct DoublyNode *head, int pos);
+struct DoublyNode *doubly_insert_at_beg(struct SinglyNode *head, int data);
+struct DoublyNode *doubly_insert_at_end(struct SinglyNode *head, int data);
+struct DoublyNode *doubly_insert_at_pos(struct SinglyNode *head, int data,
+                                        int pos);
+struct DoublyNode *doubly_delete_at_beg(struct SinglyNode *head);
+struct DoublyNode *doubly_delete_at_end(struct SinglyNode *head);
+struct DoublyNode *doubly_delete_at_pos(struct SinglyNode *head, int pos);
 
 /* Display linked list*/
 void display_singly_linked_list(struct SinglyNode *head);
+void display_doubly_linked_list(struct DoublyNode *head);
