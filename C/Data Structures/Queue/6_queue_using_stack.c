@@ -38,9 +38,13 @@ void dequeue(Queue *q) {
     return;
   }
 
+  // move all the elements from stack 1 to stack 2
+  // which will make the top element in stack 1
+  // come at last in stack 2
   while (q->s1.top != -1) {
     push(&q->s2, pop(&q->s1));
   }
+  // pop the top element from the second stack
   int value = pop(&q->s2);
   printf("Dequeued: %d\n", value);
 
