@@ -6,7 +6,17 @@ public class Main {
         BinaryTree bt = new BinaryTree();
         Node root = new Node();
         root = bt.createTree();
-        System.out.print("Elements in tree: [ ");
-        bt.display(root);
+
+        System.out.print("In order: [ ");
+        bt.in_order(root);
+        System.out.println();
+
+        System.out.print("Pre order: [ ");
+        bt.pre_order(root);
+        System.out.println();
+
+        System.out.print("Post order: [ ");
+        bt.post_order(root);
+        System.out.println();
     }
 }
