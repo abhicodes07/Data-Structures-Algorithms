@@ -1,3 +1,7 @@
+/* Implemetation of iterative pre order
+ * traversal using stack
+ */
+
 #include "stack.h"
 #include <stdbool.h>
 #include <stdio.h>
