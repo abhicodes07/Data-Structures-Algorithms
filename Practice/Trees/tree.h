@@ -6,4 +6,4 @@ typedef struct treenode {
 } Treenode;
 
 // initialize treenode
-Treenode *initNode(int);
+Treenode *initNode(int data);
