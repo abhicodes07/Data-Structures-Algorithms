@@ -19,8 +19,8 @@ Treenode *initNode(int data) {
 
 // initialize stack
 void initStack(Stack *s) { s->top = -1; }
-int isEmpty(Stack *s) { return s->top < 0; }
-int isFull(Stack *s) { return s->top == MAX - 1; }
+int isEmpty(const Stack *s) { return s->top < 0; }
+int isFull(const Stack *s) { return s->top == MAX - 1; }
 
 // push node in stack
 void push(Stack *s, Treenode *node) {
@@ -61,7 +61,7 @@ void iterative_pre_order(Treenode *root) {
   printf(" ]\n");
 }
 
-void preorder(Treenode *root) {
+void preorder(const Treenode *root) {
   if (root) {
     printf("%d ", root->data);
     preorder(root->left);
