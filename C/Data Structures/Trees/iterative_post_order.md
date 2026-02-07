@@ -4,7 +4,7 @@
 
 - Set a pointer `curr` to the tree's root.
 - Create an empty stack `st`.
-- Prepare an empty list `post_order` to hold the post-order result.
+- Use a pointer `last_visited` to track the last node that was visited.
 
 2. **Traverse Down the Left Subtree:**
 
@@ -19,15 +19,13 @@
 
 4. **Deciding the Next Step:**
 
-- _If `temp` is null_:
-
-  - The top node (from the stack) has no right child, so it can be processed now.
-  - Pop this node from the stack and add its value to the `post_order` result.
-  - Next, check if the popped node is the right child of the new stack top. If it is, continue to pop and process nodes until either the stack is empty or the current node is not the right child of the top node.
-
-- _If temp is not null:_
+- _If temp is not null and temp is not the last visited node:_
   - This means there is a right subtree that hasn’t been processed yet.
   - Set `curr` to temp to begin processing that right subtree.
+
+- _If `temp` is null_:
+  - The top node (from the stack) has no right child, so it can be processed now.
+  - Pop this node from the stack and add its value to the `last_visited` result.
 
 5. **Loop Continuation:**
 

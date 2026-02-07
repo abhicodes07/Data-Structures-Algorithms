@@ -16,3 +16,7 @@ void push(Stack *s, Treenode *node);
 
 // pop elements
 Treenode *pop(Stack *s);
+
+// empty stack
+int isEmpty(Stack *s);
+int isFull(Stack *s);
