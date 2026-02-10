@@ -6,22 +6,22 @@
 #define MAX 20
 
 // create tree node
-struct Node {
+struct TreeNode {
   int data;
-  struct Node *left;
-  struct Node *right;
+  struct TreeNode *left;
+  struct TreeNode *right;
 };
 
 // create stack
 struct Stack {
-  struct Node *stack[MAX];
+  struct TreeNode *stack[MAX];
   int top;
 };
 
 // create tree nodes
-struct Node *initNode(int item) {
-  struct Node *newnode;
-  newnode = (struct Node *)malloc(sizeof(struct Node));
+struct TreeNode *initNode(int item) {
+  struct TreeNode *newnode;
+  newnode = (struct TreeNode *)malloc(sizeof(struct TreeNode));
   newnode->data = item;
   newnode->left = NULL;
   newnode->right = NULL;
@@ -32,7 +32,7 @@ struct Node *initNode(int item) {
 void initStack(struct Stack *s) { s->top = -1; }
 
 // push tree node into stack
-void push(struct Stack *s, struct Node *node) {
+void push(struct Stack *s, struct TreeNode *node) {
   if (s->top > MAX - 1) {
     printf("OVERFLOW!\n");
     exit(1);
@@ -41,7 +41,7 @@ void push(struct Stack *s, struct Node *node) {
 }
 
 // pop tree node from the stack
-struct Node *pop(struct Stack *s) {
+struct TreeNode *pop(struct Stack *s) {
   if (s->top < 0) {
     printf("UNDERFLOW!\n");
     exit(1);
@@ -53,9 +53,9 @@ struct Node *pop(struct Stack *s) {
 int is_empty(struct Stack *s) { return s->top == -1; }
 
 // iterative pre order
-void iterative_preorder(struct Node *rootnode) {
+void iterative_preorder(struct TreeNode *rootnode) {
   struct Stack s;
-  struct Node *node;
+  struct TreeNode *node;
   initStack(&s);
 
   if (!rootnode)
@@ -76,7 +76,7 @@ void iterative_preorder(struct Node *rootnode) {
 
 // main
 int main() {
-  struct Node *root;
+  struct TreeNode *root;
   root = initNode(10);
   root->left = initNode(20);
   root->right = initNode(30);

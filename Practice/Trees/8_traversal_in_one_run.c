@@ -4,8 +4,8 @@
 #include <stdlib.h>
 
 // initialize treenode
-Treenode *initNode(int data) {
-  Treenode *newnode = malloc(sizeof(*newnode));
+TreeNode *initNode(int data) {
+  TreeNode *newnode = malloc(sizeof(*newnode));
   if (!newnode)
     return NULL;
   newnode->left = NULL;
@@ -16,7 +16,7 @@ Treenode *initNode(int data) {
 }
 
 // initialize pair
-Pair *initPair(Treenode *node, int state) {
+Pair *initPair(TreeNode *node, int state) {
   Pair *pair = malloc(sizeof(*pair));
   if (!pair)
     return NULL;
@@ -46,7 +46,7 @@ Pair *pop(Stack *s) {
 }
 
 // traversals in one run: pre, in, post
-void traversals(Treenode *root) {
+void traversals(TreeNode *root) {
   if (!root)
     return;
 
@@ -110,7 +110,7 @@ void traversals(Treenode *root) {
   printf("]\n");
 }
 
-void in_order(Treenode *root) {
+void in_order(TreeNode *root) {
   if (root) {
     in_order(root->left);
     printf("%d ", root->data);
@@ -118,7 +118,7 @@ void in_order(Treenode *root) {
   }
 }
 
-void pre_order(Treenode *root) {
+void pre_order(TreeNode *root) {
   if (root) {
     printf("%d ", root->data);
     pre_order(root->left);
@@ -126,7 +126,7 @@ void pre_order(Treenode *root) {
   }
 }
 
-void post_order(Treenode *root) {
+void post_order(TreeNode *root) {
   if (root) {
     post_order(root->left);
     post_order(root->right);
@@ -136,7 +136,7 @@ void post_order(Treenode *root) {
 
 int main(int argc, char *argv[]) {
 
-  Treenode *root = initNode(10);
+  TreeNode *root = initNode(10);
   root->left = initNode(20);
   root->right = initNode(30);
   root->left->left = initNode(40);

@@ -5,17 +5,17 @@
 
 typedef struct stack {
   int top;
-  Treenode *stack[MAX];
+  TreeNode *stack[MAX];
 } Stack;
 
 // initialize stack
 void initStack(Stack *s);
 
 // push elements
-void push(Stack *s, Treenode *node);
+void push(Stack *s, TreeNode *node);
 
 // pop elements
-Treenode *pop(Stack *s);
+TreeNode *pop(Stack *s);
 
 // empty stack
 int isEmpty(Stack *s);

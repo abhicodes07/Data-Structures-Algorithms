@@ -10,15 +10,15 @@
 #define MAX 15
 
 // create treenode datatype
-struct Treenode {
-  struct Treenode *left;
-  struct Treenode *right;
+struct TreeNode {
+  struct TreeNode *left;
+  struct TreeNode *right;
   int data;
 };
 
 // implement pairs
 struct Pair {
-  struct Treenode *node;
+  struct TreeNode *node;
   int state;
 };
 
@@ -29,8 +29,8 @@ struct Stack {
 };
 
 // initialize treenode
-struct Treenode *initNode(int value) {
-  struct Treenode *newnode = (struct Treenode *)malloc(sizeof(struct Treenode));
+struct TreeNode *initNode(int value) {
+  struct TreeNode *newnode = (struct TreeNode *)malloc(sizeof(struct TreeNode));
   newnode->data = value;
   newnode->left = NULL;
   newnode->right = NULL;
@@ -38,7 +38,7 @@ struct Treenode *initNode(int value) {
 }
 
 // initialize pair
-struct Pair *initPair(struct Treenode *node, int state) {
+struct Pair *initPair(struct TreeNode *node, int state) {
   struct Pair *p = (struct Pair *)malloc(sizeof(struct Pair));
   p->node = node;
   p->state = state;
@@ -86,7 +86,7 @@ void display(int preorder[], int inorder[], int postorder[]) {
 }
 
 // traverse the tree in post/pre/in order in single run
-void traverse_all(struct Treenode *rootnode) {
+void traverse_all(struct TreeNode *rootnode) {
   struct Stack st;
   initStack(&st);
 
@@ -137,7 +137,7 @@ void traverse_all(struct Treenode *rootnode) {
 
 // main
 int main(void) {
-  struct Treenode *root;
+  struct TreeNode *root;
   root = initNode(1);
   root->left = initNode(2);
   root->right = initNode(3);

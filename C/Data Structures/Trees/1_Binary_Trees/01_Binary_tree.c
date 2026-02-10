@@ -5,14 +5,14 @@
 #include <stdlib.h>
 
 // create a node of a tree
-struct Node {
+struct TreeNode {
   int data;
-  struct Node *left;
-  struct Node *right;
+  struct TreeNode *left;
+  struct TreeNode *right;
 };
 
 // create a tree
-struct Node *createTree() {
+struct TreeNode *createTree() {
   // create a newnode and enter the information from runtime
   int val;
   printf("Enter data (-1 for no node): ");
@@ -21,7 +21,7 @@ struct Node *createTree() {
   if (val == -1)
     return 0;
 
-  struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
+  struct TreeNode *newnode = (struct TreeNode *)malloc(sizeof(struct TreeNode));
 
   if (!newnode) {
     printf("Memory allocation failed!");
@@ -43,7 +43,7 @@ struct Node *createTree() {
 // main function
 int main() {
   // create a root pointer
-  struct Node *root;
+  struct TreeNode *root;
   root = createTree();
 
   if (root) {

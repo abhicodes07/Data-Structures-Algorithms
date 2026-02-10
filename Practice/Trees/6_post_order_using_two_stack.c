@@ -8,8 +8,8 @@
 #include <stdlib.h>
 
 // initialize treenode
-Treenode *initNode(int data) {
-  Treenode *newnode = malloc(sizeof(*newnode));
+TreeNode *initNode(int data) {
+  TreeNode *newnode = malloc(sizeof(*newnode));
   if (!newnode)
     return NULL;
   newnode->data = data;
@@ -25,21 +25,21 @@ int isEmpty(Stack *s) { return s->top < 0; }
 int isFull(Stack *s) { return s->top == MAX - 1; }
 
 // push nodes on stack
-void push(Stack *s, Treenode *node) {
+void push(Stack *s, TreeNode *node) {
   if (isFull(s))
     return;
   s->stack[++s->top] = node;
 }
 
 // pop nodes from stack
-Treenode *pop(Stack *s) {
+TreeNode *pop(Stack *s) {
   if (isEmpty(s))
     return NULL;
   return s->stack[s->top--];
 }
 
 // post order traversal
-void post_order(Treenode *root) {
+void post_order(TreeNode *root) {
   if (root) {
     post_order(root->left);
     post_order(root->right);
@@ -48,7 +48,7 @@ void post_order(Treenode *root) {
 }
 
 // post order traversal
-void iterative_post_order(Treenode *root) {
+void iterative_post_order(TreeNode *root) {
   if (!root)
     return;
 
@@ -62,7 +62,7 @@ void iterative_post_order(Treenode *root) {
   while (!isEmpty(&s1)) {
     // pop a node from s1
     // push the popped node from s2
-    Treenode *temp = pop(&s1);
+    TreeNode *temp = pop(&s1);
     push(&s2, temp);
 
     // push left and right nodes on stack 1
@@ -74,7 +74,7 @@ void iterative_post_order(Treenode *root) {
   }
   printf("Iterative post-order: [ ");
   while (!isEmpty(&s2)) {
-    Treenode *temp = pop(&s2);
+    TreeNode *temp = pop(&s2);
     printf("%d ", temp->data);
   }
   printf(" ]\n");
@@ -82,7 +82,7 @@ void iterative_post_order(Treenode *root) {
 
 // main
 int main(int argc, char *argv[]) {
-  Treenode *root;
+  TreeNode *root;
   root = initNode(10);
   root = initNode(10);
   root->left = initNode(20);

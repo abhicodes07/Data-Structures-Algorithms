@@ -9,11 +9,11 @@ typedef struct treenode {
   int data;               // data part
   struct treenode *left;  // points to left nodes
   struct treenode *right; // points to right nodes
-} Treenode;
+} TreeNode;
 
 // initialize node
-Treenode *initNode(int data) {
-  Treenode *newnode = (Treenode *)malloc(sizeof(Treenode));
+TreeNode *initNode(int data) {
+  TreeNode *newnode = (TreeNode *)malloc(sizeof(TreeNode));
   if (newnode == NULL) {
     printf("Memory Allocation failed!\n");
     exit(0);
@@ -26,7 +26,7 @@ Treenode *initNode(int data) {
 }
 
 // in order traversal
-void in_order(Treenode *root) {
+void in_order(TreeNode *root) {
   if (root) {
     in_order(root->left);      // left
     printf("%d ", root->data); // root
@@ -35,7 +35,7 @@ void in_order(Treenode *root) {
 }
 
 // pre order traversal
-void pre_order(Treenode *root) {
+void pre_order(TreeNode *root) {
   if (root) {
     printf("%d ", root->data); // root
     in_order(root->left);      // left
@@ -44,7 +44,7 @@ void pre_order(Treenode *root) {
 }
 
 // post order traversal
-void post_order(Treenode *root) {
+void post_order(TreeNode *root) {
   if (root) {
     in_order(root->left);      // left
     in_order(root->right);     // right
@@ -57,7 +57,7 @@ int max(int value_1, int value_2) {
 }
 
 // height of the tree
-int maximum_height(Treenode *root) {
+int maximum_height(TreeNode *root) {
   if (root == NULL)
     return 0;
   int left_height = maximum_height(root->left);
@@ -67,7 +67,7 @@ int maximum_height(Treenode *root) {
 
 // main
 int main(int argc, char *argv[]) {
-  Treenode *root;
+  TreeNode *root;
   root = initNode(10);
   root->left = initNode(20);
   root->right = initNode(30);

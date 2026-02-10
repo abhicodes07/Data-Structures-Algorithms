@@ -4,7 +4,7 @@
 // pair to store state and treenode
 typedef struct pair {
   int state;      // store state
-  Treenode *node; // store treenode
+  TreeNode *node; // store treenode
 } Pair;
 
 // stack for pairs
@@ -14,7 +14,7 @@ typedef struct stack {
 } Stack;
 
 // initialize pair
-Pair *initPair(Treenode *node, int state);
+Pair *initPair(TreeNode *node, int state);
 
 // Stack operations
 void initStack(Stack *s);

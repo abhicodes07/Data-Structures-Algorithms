@@ -4,21 +4,21 @@
 #define MAX 50
 
 // create tree node
-struct Node {
+struct TreeNode {
   int data;
-  struct Node *left;
-  struct Node *right;
+  struct TreeNode *left;
+  struct TreeNode *right;
 };
 
 // create stack
 struct Stack {
   int top;
-  struct Node *stack[MAX];
+  struct TreeNode *stack[MAX];
 };
 
 // node initilizer
-struct Node *initNode(int value) {
-  struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
+struct TreeNode *initNode(int value) {
+  struct TreeNode *newnode = (struct TreeNode *)malloc(sizeof(struct TreeNode));
   newnode->data = value;
   newnode->left = NULL;
   newnode->right = NULL;
@@ -29,7 +29,7 @@ struct Node *initNode(int value) {
 void initStack(struct Stack *s) { s->top = -1; }
 
 // push node
-void push(struct Stack *s, struct Node *node) {
+void push(struct Stack *s, struct TreeNode *node) {
   if (s->top > MAX - 1) {
     printf("OVERFLOW\n");
     exit(1);
@@ -38,7 +38,7 @@ void push(struct Stack *s, struct Node *node) {
 }
 
 // pop node
-struct Node *pop(struct Stack *s) {
+struct TreeNode *pop(struct Stack *s) {
   if (s->top < 0) {
     printf("UNDERFLOW\n");
     exit(1);
@@ -50,7 +50,7 @@ struct Node *pop(struct Stack *s) {
 int is_empty(struct Stack *s) { return s->top == -1; }
 
 // iterative post order traversal using two stack
-void iterative_post_order_two_stack(struct Node *rootnode) {
+void iterative_post_order_two_stack(struct TreeNode *rootnode) {
   if (!rootnode)
     return;
   struct Stack s1, s2;
@@ -62,7 +62,7 @@ void iterative_post_order_two_stack(struct Node *rootnode) {
 
   while (!is_empty(&s1)) {
     // pop a node
-    struct Node *temp = pop(&s1);
+    struct TreeNode *temp = pop(&s1);
 
     // push the popped node into stack-2
     push(&s2, temp);
@@ -79,7 +79,7 @@ void iterative_post_order_two_stack(struct Node *rootnode) {
   // print post order
   printf("Post order: ");
   while (!is_empty(&s2)) {
-    struct Node *temp = pop(&s2);
+    struct TreeNode *temp = pop(&s2);
     printf("%d ", temp->data);
   }
   printf("\n");
@@ -87,7 +87,7 @@ void iterative_post_order_two_stack(struct Node *rootnode) {
 
 // main
 int main(void) {
-  struct Node *root;
+  struct TreeNode *root;
   root = initNode(10);
   root->left = initNode(20);
   root->right = initNode(30);

@@ -8,8 +8,8 @@
 #include <stdlib.h>
 
 // initialize treenode
-Treenode *initNode(int data) {
-  Treenode *newnode = malloc(sizeof(*newnode));
+TreeNode *initNode(int data) {
+  TreeNode *newnode = malloc(sizeof(*newnode));
   if (!newnode) {
     printf("Memory allocation failed!\n");
     return NULL;
@@ -27,7 +27,7 @@ int isEmpty(const Stack *s) { return s->top < 0; }
 int isFull(const Stack *s) { return s->top == MAX - 1; }
 
 // push node in stack
-void push(Stack *s, Treenode *node) {
+void push(Stack *s, TreeNode *node) {
   if (isFull(s)) {
     printf("Stack Overflow!\n");
     return;
@@ -36,7 +36,7 @@ void push(Stack *s, Treenode *node) {
 }
 
 // pop node from stack
-Treenode *pop(Stack *s) {
+TreeNode *pop(Stack *s) {
   if (isEmpty(s)) {
     printf("Stack Underflow!\n");
     return NULL;
@@ -45,7 +45,7 @@ Treenode *pop(Stack *s) {
 }
 
 // iterative pre order traversal
-void iterative_pre_order(Treenode *root) {
+void iterative_pre_order(TreeNode *root) {
   if (!root)
     return;
   Stack s;
@@ -54,7 +54,7 @@ void iterative_pre_order(Treenode *root) {
 
   printf("Iterative pre-order: [ ");
   while (!isEmpty(&s)) {
-    Treenode *temp = pop(&s);
+    TreeNode *temp = pop(&s);
     printf("%d ", temp->data);
 
     if (temp->right)
@@ -65,7 +65,7 @@ void iterative_pre_order(Treenode *root) {
   printf(" ]\n");
 }
 
-void preorder(const Treenode *root) {
+void preorder(const TreeNode *root) {
   if (root) {
     printf("%d ", root->data);
     preorder(root->left);
@@ -75,7 +75,7 @@ void preorder(const Treenode *root) {
 
 // main
 int main(int argc, char *argv[]) {
-  Treenode *root;
+  TreeNode *root;
   root = initNode(10);
   root = initNode(10);
   root->left = initNode(20);

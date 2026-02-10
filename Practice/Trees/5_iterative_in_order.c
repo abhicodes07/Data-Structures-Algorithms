@@ -8,8 +8,8 @@
 #include <stdlib.h>
 
 // initialize treenode
-Treenode *initNode(int data) {
-  Treenode *newnode = malloc(sizeof(*newnode));
+TreeNode *initNode(int data) {
+  TreeNode *newnode = malloc(sizeof(*newnode));
   if (!newnode)
     return NULL;
   newnode->data = data;
@@ -25,21 +25,21 @@ int isEmpty(Stack *s) { return s->top < 0; }
 int isFull(Stack *s) { return s->top == MAX - 1; }
 
 // push nodes in the stack
-void push(Stack *s, Treenode *node) {
+void push(Stack *s, TreeNode *node) {
   if (isFull(s))
     return;
   s->stack[++s->top] = node;
 }
 
 // pop nodes from the stack
-Treenode *pop(Stack *s) {
+TreeNode *pop(Stack *s) {
   if (isEmpty(s))
     return NULL;
   return s->stack[s->top--];
 }
 
 // iterative in order traversal
-void in_order_traversal(Treenode *root) {
+void in_order_traversal(TreeNode *root) {
   if (!root)
     return;
   Stack s;
@@ -47,7 +47,7 @@ void in_order_traversal(Treenode *root) {
   printf("Iterative in-order traversal: [ ");
 
   // store in root in temp
-  Treenode *temp = root;
+  TreeNode *temp = root;
 
   while (true) {
     // process left nodes
@@ -67,7 +67,7 @@ void in_order_traversal(Treenode *root) {
 }
 
 // in order recursive
-void in_order(Treenode *root) {
+void in_order(TreeNode *root) {
   if (root) {
     in_order(root->left);
     printf("%d ", root->data);
@@ -76,7 +76,7 @@ void in_order(Treenode *root) {
 }
 
 int main(int argc, char *argv[]) {
-  Treenode *root;
+  TreeNode *root;
   root = initNode(10);
   root = initNode(10);
   root->left = initNode(20);

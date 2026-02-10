@@ -6,14 +6,14 @@
 typedef struct queue {
   int REAR;             // insert nodes
   int FRONT;            // delete nodes
-  Treenode *queue[MAX]; // stores the addresses of treenodes
+  TreeNode *queue[MAX]; // stores the addresses of treenodes
 } Queue;
 
 // initialize queue
 void initQueue(Queue *q);
 
 // enqueue treenode using rear
-void enqueue(Queue *q, Treenode *node);
+void enqueue(Queue *q, TreeNode *node);
 
 // dequeue elements using front
-Treenode *dequeue(Queue *q);
+TreeNode *dequeue(Queue *q);

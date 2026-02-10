@@ -4,16 +4,16 @@
 #include <stdlib.h>
 
 // create a node
-struct Node {
+struct TreeNode {
   int data;
-  struct Node *right;
-  struct Node *left;
+  struct TreeNode *right;
+  struct TreeNode *left;
 };
 
 // create a binary tree
-struct Node *create_tree() {
+struct TreeNode *create_tree() {
   int val;
-  struct Node *newnode;
+  struct TreeNode *newnode;
 
   printf("Enter the data (-1 for no node): ");
   scanf("%d", &val);
@@ -22,7 +22,7 @@ struct Node *create_tree() {
     return 0;
 
   // create a newnode
-  newnode = (struct Node *)malloc(sizeof(struct Node));
+  newnode = (struct TreeNode *)malloc(sizeof(struct TreeNode));
   if (!newnode)
     exit(1);
 
@@ -39,7 +39,7 @@ struct Node *create_tree() {
 }
 
 // pre order traversal
-void pre_order(struct Node *root) {
+void pre_order(struct TreeNode *root) {
   if (root) {
     printf("%d ", root->data); // root
     pre_order(root->left);     // left sub-tree
@@ -48,7 +48,7 @@ void pre_order(struct Node *root) {
 }
 
 // in order traversal
-void in_order(struct Node *root) {
+void in_order(struct TreeNode *root) {
   if (root) {
     pre_order(root->left);     // left sub-tree
     printf("%d ", root->data); // root
@@ -57,7 +57,7 @@ void in_order(struct Node *root) {
 }
 
 // post order traversal
-void post_order(struct Node *root) {
+void post_order(struct TreeNode *root) {
   if (root) {
     post_order(root->left);    // left sub-tree
     post_order(root->right);   // right sub-tree
@@ -67,7 +67,7 @@ void post_order(struct Node *root) {
 
 // main
 int main(void) {
-  struct Node *root;
+  struct TreeNode *root;
   root = create_tree();
   if (root)
     printf("Tree successfully created!\n");

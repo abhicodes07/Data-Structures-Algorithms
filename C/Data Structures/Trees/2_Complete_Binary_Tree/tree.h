@@ -3,7 +3,7 @@ typedef struct treenode {
   int data;               // data
   struct treenode *left;  // points to left nodes
   struct treenode *right; // points to right nodes
-} Treenode;
+} TreeNode;
 
 // initialize nodes
-Treenode *initNode(int data);
+TreeNode *initNode(int data);

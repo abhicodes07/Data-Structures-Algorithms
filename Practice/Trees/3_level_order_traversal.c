@@ -9,8 +9,8 @@
 #include <stdlib.h>
 
 // initialize treenode
-Treenode *initNode(int data) {
-  Treenode *newnode = malloc(sizeof(*newnode));
+TreeNode *initNode(int data) {
+  TreeNode *newnode = malloc(sizeof(*newnode));
   if (newnode == NULL) {
     printf("Memory allocation failed!\n");
     return 0;
@@ -34,7 +34,7 @@ void initQueue(Queue *q) {
 int isEmpty(const Queue *q) { return q->FRONT > q->REAR; }
 
 /* insert treenode */
-void enqueue(Queue *q, Treenode *node) {
+void enqueue(Queue *q, TreeNode *node) {
   // if queue is full
   if (q->REAR == MAX - 1) {
     printf("Queue Overflow!\n");
@@ -44,18 +44,18 @@ void enqueue(Queue *q, Treenode *node) {
 }
 
 /* dequeue treenode */
-Treenode *dequeue(Queue *q) {
+TreeNode *dequeue(Queue *q) {
   if (isEmpty(q)) {
     printf("Queue Underflow!\n");
     return NULL;
   }
 
-  Treenode *node = q->queue[q->FRONT++];
+  TreeNode *node = q->queue[q->FRONT++];
   return node;
 }
 
 /* traversal */
-void level_order_traversal(Treenode *root) {
+void level_order_traversal(TreeNode *root) {
   if (!root)
     return;
 
@@ -64,7 +64,7 @@ void level_order_traversal(Treenode *root) {
   enqueue(&q, root); // enqueue root node
   printf("Level Order Traversal: [ ");
   while (!isEmpty(&q)) {
-    Treenode *temp = dequeue(&q);
+    TreeNode *temp = dequeue(&q);
     printf(" %d,", temp->data);
 
     if (temp->left) {
@@ -80,7 +80,7 @@ void level_order_traversal(Treenode *root) {
 // main
 int main(int argc, char *argv[]) {
   // create tree
-  Treenode *root;
+  TreeNode *root;
   root = initNode(10);
   root->left = initNode(20);
   root->right = initNode(30);

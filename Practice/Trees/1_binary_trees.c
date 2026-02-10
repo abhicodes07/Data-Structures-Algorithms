@@ -9,11 +9,11 @@ typedef struct treenode {
   int data;               // stores the data part
   struct treenode *left;  // points to left nodes
   struct treenode *right; // points to right nodes
-} Treenode;
+} TreeNode;
 
 // initialize newnode
-Treenode *initNode(int data) {
-  Treenode *node = (Treenode *)malloc(sizeof(Treenode));
+TreeNode *initNode(int data) {
+  TreeNode *node = (TreeNode *)malloc(sizeof(TreeNode));
   if (node == NULL) {
     printf("Memory allocation failed!\n");
     exit(0);
@@ -25,7 +25,7 @@ Treenode *initNode(int data) {
 }
 
 // create binary tree using recursion
-Treenode *createTree() {
+TreeNode *createTree() {
   int val;
   printf("Enter the data (-1 for no node): ");
   scanf("%d", &val);
@@ -33,7 +33,7 @@ Treenode *createTree() {
   if (val == -1)
     return 0;
 
-  Treenode *newnode = initNode(val);
+  TreeNode *newnode = initNode(val);
 
   printf("Left node of %d ~~> ", newnode->data);
   newnode->left = createTree();
@@ -44,7 +44,7 @@ Treenode *createTree() {
 }
 
 // traverse using pre order traversal
-void traverse(Treenode *root) {
+void traverse(TreeNode *root) {
   if (root) {
     printf("%d ", root->data); // root
     traverse(root->left);      // left
@@ -54,7 +54,7 @@ void traverse(Treenode *root) {
 
 // main
 int main(int argc, char *argv[]) {
-  Treenode *root;
+  TreeNode *root;
   root = createTree();
   printf("Elements in the list: [ ");
   traverse(root);

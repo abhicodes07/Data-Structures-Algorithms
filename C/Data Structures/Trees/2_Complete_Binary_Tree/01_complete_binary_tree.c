@@ -8,8 +8,8 @@
 #include <stdlib.h>
 
 // initialize treenodes
-Treenode *initNode(int data) {
-  Treenode *newnode = malloc(sizeof(*newnode));
+TreeNode *initNode(int data) {
+  TreeNode *newnode = malloc(sizeof(*newnode));
   if (!newnode)
     return NULL;
   newnode->data = data;
@@ -20,7 +20,7 @@ Treenode *initNode(int data) {
 }
 
 // count the number of nodes
-int count(Treenode *root) {
+int count(TreeNode *root) {
   if (root == NULL)
     return 0;
 
@@ -28,7 +28,7 @@ int count(Treenode *root) {
 }
 
 // if the tree is complete binary tree
-bool isCompleteBinaryTree(Treenode *root, int index, int count) {
+bool isCompleteBinaryTree(TreeNode *root, int index, int count) {
   if (!root)
     return true;
 
@@ -41,7 +41,7 @@ bool isCompleteBinaryTree(Treenode *root, int index, int count) {
 
 // main
 int main(int argc, char *argv[]) {
-  Treenode *root = initNode(1);
+  TreeNode *root = initNode(1);
   root->left = initNode(2);
   root->right = initNode(3);
   root->left->left = initNode(4);

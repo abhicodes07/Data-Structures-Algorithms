@@ -4,21 +4,21 @@
 #define MAX 100
 
 // create tree node
-struct Node {
+struct TreeNode {
   int data;
-  struct Node *left;
-  struct Node *right;
+  struct TreeNode *left;
+  struct TreeNode *right;
 };
 
 // initialize queue
 int rear = -1;
 int front = -1;
-struct Node *queue[MAX];
+struct TreeNode *queue[MAX];
 
 // initialize tree nodes
-struct Node *init(int item) {
-  struct Node *newnode;
-  newnode = (struct Node *)malloc(sizeof(struct Node));
+struct TreeNode *init(int item) {
+  struct TreeNode *newnode;
+  newnode = (struct TreeNode *)malloc(sizeof(struct TreeNode));
   if (!newnode) {
     printf("MEMORY NOT ALLOCATED");
     return 0;
@@ -31,7 +31,7 @@ struct Node *init(int item) {
 }
 
 // enqueue tree node in queue
-void enqueue(struct Node *node) {
+void enqueue(struct TreeNode *node) {
   if (rear > MAX - 1) {
     printf("Overflow!");
     return;
@@ -45,8 +45,8 @@ void enqueue(struct Node *node) {
 }
 
 // dequeue the tree node from queue
-struct Node *dequeue() {
-  struct Node *temp = queue[front];
+struct TreeNode *dequeue() {
+  struct TreeNode *temp = queue[front];
   if (front < 0) {
     printf("UNDERFLOW!");
     exit(1);
@@ -60,7 +60,7 @@ struct Node *dequeue() {
 }
 
 // traverse through nodes level by level
-void level_order_traversal(struct Node *root) {
+void level_order_traversal(struct TreeNode *root) {
   if (!root) {
     exit(1);
   }
@@ -71,7 +71,7 @@ void level_order_traversal(struct Node *root) {
   int i = front;
   printf("Level order traversal: [ ");
   while (i <= rear) {
-    struct Node *node = dequeue();
+    struct TreeNode *node = dequeue();
     printf("%d ", node->data);
 
     // process left children first and then right: left to right
@@ -96,7 +96,7 @@ int main(void) {
   // level order: 10 20 30 40 50 60 70
 
   // root node
-  struct Node *root;
+  struct TreeNode *root;
   root = init(10);
 
   root->left = init(20);
