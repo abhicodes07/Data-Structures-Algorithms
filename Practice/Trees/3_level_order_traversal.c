@@ -23,7 +23,7 @@ TreeNode *initNode(int data) {
 
 /* initialize queue */
 void initQueue(Queue *q) {
-  // if front is greater than rear than
+  // if front is greater than rear then
   // queue is empty as front has crossed the rear
   // we don't have to initialize both front and
   // rear to -1
