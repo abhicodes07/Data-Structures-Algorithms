@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"cdcc3ec281249976","x":-122,"y":-268,"width":250,"height":60,"color":"1","type":"text","text":"# Interface"},
+		{"id":"38be6764b9fce970","x":-122,"y":-140,"width":250,"height":60,"color":"1","type":"text","text":"# Collection"},
+		{"id":"42b8d04e185f27e9","x":-122,"y":-8,"width":250,"height":60,"color":"2","type":"text","text":"# Set"},
+		{"id":"0d2b6a3f598aa9a1","x":-700,"y":-8,"width":250,"height":60,"color":"2","type":"text","text":"# List"},
+		{"id":"ea84550adbf45860","x":-765,"y":120,"width":380,"height":240,"type":"text","text":"### 1. ArrayList\n### 2. LinkedList\n### 3. Vector\n### 4. Stack\n### 5. CopyOnWriteArrayList\n"},
+		{"id":"e91709e76868fcf1","x":-177,"y":120,"width":360,"height":320,"type":"text","text":"### 1. HashSet\n### 2. LinkedHashSet\n### 3. TreeSet\n### 4. EnumSet\n### 5. ConcurrentSkipListSet\n### 6. SortedSet\n### 7. CopyOnWriteArraySet\n"},
+		{"id":"18787ce4d8c620cc","x":520,"y":-8,"width":250,"height":60,"color":"2","type":"text","text":"# Queue"},
+		{"id":"f8f04d78a1b65008","x":407,"y":120,"width":477,"height":468,"type":"text","text":"### 1. LinkedList\n### 2. PriorityQueue\n### 3. Deque\n### 4. BlockingQueue\n### 5. ArrayBlockingQueue\n### 6. LinkedBlockingQueue\n### 7. PriorityBlockingQueue\n### 8. SynchronousQueue\n### 9. DelayQueue\n### 10. ConcurrentLinkedQueue"},
+		{"id":"43c5decaa0a0ab60","x":1020,"y":227,"width":250,"height":255,"type":"text","text":"# Deque\n### 1. ArrayDeque\n### 2. LinkedList\n### 3. ConcurrentLinkedQueue"}
+	],
+	"edges":[
+		{"id":"146665dcd379ead7","fromNode":"cdcc3ec281249976","fromSide":"bottom","toNode":"38be6764b9fce970","toSide":"top"},
+		{"id":"089e4a5692bd23f6","fromNode":"38be6764b9fce970","fromSide":"bottom","toNode":"42b8d04e185f27e9","toSide":"top"},
+		{"id":"498412bfe272cbd6","fromNode":"38be6764b9fce970","fromSide":"bottom","toNode":"18787ce4d8c620cc","toSide":"top"},
+		{"id":"3ee27c85e6ed9456","fromNode":"38be6764b9fce970","fromSide":"bottom","toNode":"0d2b6a3f598aa9a1","toSide":"top"},
+		{"id":"64b580c7507b95b6","fromNode":"0d2b6a3f598aa9a1","fromSide":"bottom","toNode":"ea84550adbf45860","toSide":"top"},
+		{"id":"5241733894a9b954","fromNode":"42b8d04e185f27e9","fromSide":"bottom","toNode":"e91709e76868fcf1","toSide":"top"},
+		{"id":"e55e7a51548571ed","fromNode":"18787ce4d8c620cc","fromSide":"bottom","toNode":"f8f04d78a1b65008","toSide":"top"},
+		{"id":"4bf1368c57583ec2","fromNode":"f8f04d78a1b65008","fromSide":"right","toNode":"43c5decaa0a0ab60","toSide":"left"}
+	]
+}
