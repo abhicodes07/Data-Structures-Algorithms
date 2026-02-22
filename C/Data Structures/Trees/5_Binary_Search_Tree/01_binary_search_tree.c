@@ -49,6 +49,15 @@ void in_order(TreeNode *root) {
   }
 }
 
+// free tree nodes to save memory
+void freeTree(TreeNode *root) {
+  if (root) {
+    freeTree(root->left);
+    free(root);
+    freeTree(root->right);
+  }
+}
+
 // main
 int main(int argc, char *argv[]) {
   TreeNode *root = initNode(6);
@@ -66,5 +75,6 @@ int main(int argc, char *argv[]) {
   in_order(root);
   printf("\n");
 
+  freeTree(root);
   return EXIT_SUCCESS;
 }
