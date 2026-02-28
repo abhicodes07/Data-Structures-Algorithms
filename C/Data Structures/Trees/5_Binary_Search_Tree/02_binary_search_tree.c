@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 // initialize treenode
-TreeNode *initNode(int data) {
+TreeNode *init_node(int data) {
   TreeNode *newnode = malloc(sizeof("* newnode"));
   if (!newnode) {
     perror("Memory allocation failed!\n");
@@ -23,20 +23,20 @@ TreeNode *insert(TreeNode *root, int key) {
   // if null is encountered
   // create a newnode
   if (!root)
-    return initNode(key);
+    return init_node(key);
 
   TreeNode *curr = root;
   while (true) {
     if (curr->data <= key) { // move to right subtree
       if (curr->right == NULL) {
-        curr->right = initNode(key);
+        curr->right = init_node(key);
         break;
       } else {
         curr = curr->right;
       }
     } else { // move to left subtree
       if (curr->left == NULL) {
-        curr->left = initNode(key);
+        curr->left = init_node(key);
         break;
       } else {
         curr = curr->left;
@@ -69,7 +69,7 @@ void freeTree(TreeNode *root) {
 // main
 int main(int argc, char *argv[]) {
   // initialize root node of tree
-  TreeNode *root = initNode(6);
+  TreeNode *root = init_node(6);
 
   // insert nodes in tree
   root = insert(root, 4);

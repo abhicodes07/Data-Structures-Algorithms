@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 // initialize node
-TreeNode *initNode(int data) {
+TreeNode *init_node(int data) {
   TreeNode *newnode = malloc(sizeof(*newnode));
   if (newnode == NULL) {
     perror("Memory allocation failed!\n");
@@ -22,7 +22,7 @@ TreeNode *initNode(int data) {
 // insert node in BST using recursion
 TreeNode *insert(TreeNode *root, int key) {
   if (!root)
-    return initNode(key);
+    return init_node(key);
 
   // go to right subtree
   // if the value is greater than the root
@@ -60,7 +60,7 @@ void freeTree(TreeNode *root) {
 
 // main
 int main(int argc, char *argv[]) {
-  TreeNode *root = initNode(6);
+  TreeNode *root = init_node(6);
   root = insert(root, 4);
   root = insert(root, 2);
   root = insert(root, 5);
