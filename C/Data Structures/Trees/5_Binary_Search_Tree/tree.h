@@ -6,7 +6,7 @@ typedef struct treenode {
 } TreeNode;
 
 /* initialize the node */
-TreeNode *initNode(int data);
+TreeNode *init_node(int data);
 
 /* insert node in BST */
 TreeNode *insert(TreeNode *root, int key);
@@ -15,4 +15,4 @@ TreeNode *insert(TreeNode *root, int key);
 void in_order(TreeNode *root);
 
 /* free tree nodes to save memory */
-void freeTree(TreeNode *root);
+void free_tree(TreeNode *root);
