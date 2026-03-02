@@ -8,7 +8,6 @@ TreeNode *init_node(int data) {
   TreeNode *newnode = malloc(sizeof(*newnode));
   if (!newnode) {
     fprintf(stderr, "Memory allocation failed!\n");
-    free(newnode);
     exit(1);
   }
   newnode->data = data;
@@ -25,7 +24,7 @@ TreeNode *insert(TreeNode *root, int key) {
 
   if (root->data <= key)
     root->right = insert(root->right, key);
-  if (root->data >= key)
+  else
     root->left = insert(root->left, key);
 
   return root;
@@ -39,7 +38,15 @@ void in_order(TreeNode *root) {
     in_order(root->right);
   }
 }
+
 // free tree
+void free_tree(TreeNode *root) {
+  if (root) {
+    free_tree(root->left);
+    free(root);
+    free_tree(root->right);
+  }
+}
 
 // main
 int main(int argc, char *argv[]) {
@@ -59,5 +66,7 @@ int main(int argc, char *argv[]) {
   printf("In-order: [ ");
   in_order(root);
   printf("]\n");
+
+  free_tree(root);
   return EXIT_SUCCESS;
 }
