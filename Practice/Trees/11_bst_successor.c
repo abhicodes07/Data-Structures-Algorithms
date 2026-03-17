@@ -52,6 +52,22 @@ TreeNode *successor(TreeNode *root, int data) {
   return succ;
 }
 
+TreeNode *predecessor(TreeNode *root, int data) {
+  if (!root)
+    return NULL;
+
+  TreeNode *pred = NULL;
+  while (root) {
+    if (root->data < data) {
+      pred = root;
+      root = root->left;
+    } else {
+      root = root->right;
+    }
+  }
+
+  return pred;
+}
 // in order treewalk
 void in_order(TreeNode *root) {
   if (root) {
