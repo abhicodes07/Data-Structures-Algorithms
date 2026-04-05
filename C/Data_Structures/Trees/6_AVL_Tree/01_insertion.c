@@ -122,7 +122,7 @@ void freeTree(TreeNode *root) {
   }
 }
 
-// main
+// ── main ─────────────────────────────────────────────────────────────────────
 int main(int argc, char *argv[]) {
   int list[] = {14, 17, 11, 7, 53, 4, 13, 12, 8, 60, 19, 16, 20};
   int size = sizeof(list) / sizeof(list[0]);
