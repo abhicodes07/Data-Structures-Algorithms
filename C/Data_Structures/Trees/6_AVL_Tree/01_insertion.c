@@ -94,18 +94,26 @@ TreeNode *insertNode(TreeNode *root, int data) {
     root->right = insertNode(root->right, data);
   }
 
-  // STEP-2 :
-  // update height
+  // STEP-2 : update height
   updateHeight(root);
 
-  // get balance factor
+  // STEP-3 : get balance factor
   int balance_factor = getBalanceFactor(root);
+
+  // balance_factor > 1 means that height of the left subtree is
+  // greater than that of the right subtree
+  if (balance_factor > 1 && data < root->right->data)
+    return rightRotate(root);
+
+  if (balance_factor < -1 && data > root->left->data)
+    return leftRotate(root);
+
   return root;
 }
 
 // ── Print and free tree ──────────────────────────────────────────────────────
 // in order tree walk
-void inOrderWalk(TreeNode *root) {
+void inOrderWalk(const TreeNode *root) {
   if (root) {
     inOrderWalk(root->left);
     printf("%d ", root->data);
