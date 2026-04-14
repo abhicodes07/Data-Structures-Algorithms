@@ -1,3 +1,4 @@
+#include "assert.h"
 #include "tree.h"
 #include <stdbool.h>
 #include <stdio.h>
@@ -19,7 +20,9 @@ TreeNode *initNode(int data) {
 
 // ── AVL helpers ────────────────────────────────────────────────────────────
 // get height
-int getHeight(TreeNode *node) { return (node == NULL) ? 0 : node->height; }
+int getHeight(const TreeNode *node) {
+  return (node == NULL) ? 0 : node->height;
+}
 
 // update height
 void updateHeight(TreeNode *node) {
@@ -84,7 +87,7 @@ TreeNode *rightRotate(TreeNode *y) {
 // ── insert node ──────────────────────────────────────────────────────────────
 // insert node in tree
 TreeNode *insertNode(TreeNode *root, int data) {
-  // STEP-1 : insert node
+  // NOTE : insert node
   if (!root)
     return initNode(data);
 
@@ -94,19 +97,64 @@ TreeNode *insertNode(TreeNode *root, int data) {
     root->right = insertNode(root->right, data);
   }
 
-  // STEP-2 : update height
+  // NOTE :  update height
   updateHeight(root);
 
-  // STEP-3 : get balance factor
+  // NOTE : get balance factor
   int balance_factor = getBalanceFactor(root);
+  printf("Balance factor of %d: %d\n", root->data, balance_factor);
 
+  // NOTE : four rotation cases
+
+  // left-left insertion, balance factor > 1
+  //     x (root)
+  //    /
+  //   y
+  //  /
+  // z
   // balance_factor > 1 means that height of the left subtree is
   // greater than that of the right subtree
-  if (balance_factor > 1 && data < root->right->data)
+  if (balance_factor > 1 && data < root->left->data) {
+    printf("UNBALANCED SUBTREE DETECTED DUE TO LEFT-LEFT INSERTION\n");
     return rightRotate(root);
+  }
 
-  if (balance_factor < -1 && data > root->left->data)
+  // right-right insertion, balance factor < -1
+  // x (root)
+  //  \
+  //   y
+  //   \
+  //    z
+  // balance_factor < 1 means that height of the left subtree is
+  // less than that of the right subtree
+  if (balance_factor < -1 && data > root->right->data) {
+    printf("UNBALANCED SUBTREE DETECTED DUE TO RIGHT-RIGHT INSERTION\n");
     return leftRotate(root);
+  }
+
+  // left-right insertion, balance factor > 1
+  //     x (root) <- right rotate here
+  //    /
+  //   y  <- left rotate here
+  //    \
+  //     z
+  if (balance_factor > 1 && data > root->left->data) {
+    printf("UNBALANCED SUBTREE DETECTED DUE TO LEFT-RIGHT INSERTION\n");
+    root->left = leftRotate(root->left);
+    return rightRotate(root);
+  }
+
+  // right-left insertion, balance factor < -1
+  //  x (root) <- left rotate here
+  //   \
+  //    y <- right rotate here
+  //   /
+  //  z
+  if (balance_factor < -1 && data < root->right->data) {
+    printf("UNBALANCED SUBTREE DETECTED DUE TO RIGHT-LEFT INSERTION\n");
+    root->right = rightRotate(root->right);
+    return leftRotate(root);
+  }
 
   return root;
 }
@@ -132,17 +180,20 @@ void freeTree(TreeNode *root) {
 
 // ── main ─────────────────────────────────────────────────────────────────────
 int main(int argc, char *argv[]) {
-  int list[] = {14, 17, 11, 7, 53, 4, 13, 12, 8, 60, 19, 16, 20};
+  int list[] = {33, 13, 53, 11, 21, 61, 8, 9};
   int size = sizeof(list) / sizeof(list[0]);
 
-  TreeNode *root = initNode(list[0]);
-  for (int i = 1; i < size; i++) {
+  TreeNode *root = NULL;
+  for (int i = 0; i < size; i++) {
     root = insertNode(root, list[i]);
+    // check balance factor on every insertion
+    assert(getBalanceFactor(root) >= -1 && getBalanceFactor(root) <= 1);
   }
 
   printf("In-order: ");
   inOrderWalk(root);
   printf("\n");
 
+  freeTree(root);
   return EXIT_SUCCESS;
 }
