@@ -7,31 +7,31 @@ typedef struct treenode {
 } TreeNode;
 
 // initialize treenode
-TreeNode *initNode(int data);
+TreeNode *initNode(int);
 
 // get height
-int getHeight(const TreeNode *node);
+int getHeight(const TreeNode *);
 
 // get maximum of height between left and right
-int max(int a, int b);
+int max(int, int);
 
 // update height
-void updateHeight(TreeNode *node);
+void updateHeight(TreeNode *);
 
 // get balance factor
-int getBalanceFactor(TreeNode *node);
+int getBalanceFactor(TreeNode *);
 
 // left rotation
-TreeNode *leftRotate(TreeNode *y);
+TreeNode *leftRotate(TreeNode *);
 
 // right rotation
-TreeNode *rightRotate(TreeNode *x);
+TreeNode *rightRotate(TreeNode *);
 
 // create tree
-TreeNode *insertNode(TreeNode *root, int data);
+TreeNode *insertNode(TreeNode *, int);
 
 // inorder treewalk
-void inOrderWalk(const TreeNode *root);
+void inOrderWalk(const TreeNode *);
 
 // free tree
-void freeTree(TreeNode *root);
+void freeTree(TreeNode *);
