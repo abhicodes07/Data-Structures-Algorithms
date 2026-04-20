@@ -40,12 +40,14 @@ TreeNode *findLastRight(TreeNode *root) {
 TreeNode *helper(TreeNode *root) {
   TreeNode *temp;
 
+  // CASE 1: nodeToBeDeleted has single child
   // if there's no left subtree,
   // return right subtree
+  // NOTE:  also handles the leaf nodes
   if (root->left == NULL) {
-    temp = root->right;
+    temp = root->right; // for a leaf, this is NULL
     free(root);
-    return temp;
+    return temp; // returns NULL in case of leaf node
   }
 
   // if there's no right subtree,
@@ -56,16 +58,17 @@ TreeNode *helper(TreeNode *root) {
     return temp;
   }
 
+  // CASE 2: nodeToBeDeleted has two children
   // right child of root
-  TreeNode *rightChild = root->right;
+  TreeNode *rightChild = root->right; // save whole right subtree
 
-  // lastRight of root
+  // find in-order predecessor i.e., lastRight of root
   TreeNode *lastRight = findLastRight(root->left);
 
-  // update link
+  // update link, attach right subtree here
   lastRight->right = rightChild;
 
-  // free and return node
+  // new root of this subtree
   temp = root->left;
   free(root); // free node
   return temp;
