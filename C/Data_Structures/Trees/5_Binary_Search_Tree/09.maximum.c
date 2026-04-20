@@ -30,7 +30,7 @@ TreeNode *insert(TreeNode *root, int key) {
   return root;
 }
 
-// find minimum node in a bst
+// find maximum node in a bst
 TreeNode *maximum(TreeNode *root) {
   if (!root)
     return NULL;
