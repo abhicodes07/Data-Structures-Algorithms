@@ -148,12 +148,12 @@ TreeNode *deleteNode(TreeNode *root, int key) {
     return leftRotate(root);
 
   if (balance_factor < -1 && getBalanceFactor(root->right) > 0) {
-    temp->right = rightRotate(root->right);
+    root->right = rightRotate(root->right);
     return leftRotate(root);
   }
 
   if (balance_factor > 1 && getBalanceFactor(root->left) < 0) {
-    temp->left = leftRotate(root->left);
+    root->left = leftRotate(root->left);
     return rightRotate(root);
   }
 
