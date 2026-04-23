@@ -114,7 +114,7 @@ TreeNode *deleteNode(TreeNode *root, int key) {
   if (!root)
     return NULL;
 
-  TreeNode *temp = root;
+  TreeNode *temp;
 
   if (root->data < key) {
     root->right = deleteNode(root->right, key);
@@ -133,34 +133,34 @@ TreeNode *deleteNode(TreeNode *root, int key) {
       TreeNode *predecessor = findPredecessor(root->left);
       root->data = predecessor->data;
       root->left = deleteNode(root->left, predecessor->data);
-      temp = root;
     }
   }
 
   // update height of nodes
-  updateHeight(temp);
+  if (root)
+    updateHeight(root);
 
   // get balance factor of a node
-  int balance_factor = getBalanceFactor(temp);
+  int balance_factor = getBalanceFactor(root);
 
   // perform rotation if unbalanced
-  if (balance_factor < -1 && getBalanceFactor(temp->right) <= 0)
-    return leftRotate(temp);
+  if (balance_factor < -1 && getBalanceFactor(root->right) <= 0)
+    return leftRotate(root);
 
-  if (balance_factor < -1 && getBalanceFactor(temp->right) > 0) {
-    temp->right = rightRotate(temp->right);
-    return leftRotate(temp);
+  if (balance_factor < -1 && getBalanceFactor(root->right) > 0) {
+    temp->right = rightRotate(root->right);
+    return leftRotate(root);
   }
 
-  if (balance_factor > 1 && getBalanceFactor(temp->left) < 0) {
-    temp->left = leftRotate(temp->left);
-    return rightRotate(temp);
+  if (balance_factor > 1 && getBalanceFactor(root->left) < 0) {
+    temp->left = leftRotate(root->left);
+    return rightRotate(root);
   }
 
-  if (balance_factor > 1 && getBalanceFactor(temp->left) >= 0)
-    return rightRotate(temp);
+  if (balance_factor > 1 && getBalanceFactor(root->left) >= 0)
+    return rightRotate(root);
 
-  return temp;
+  return root;
 }
 
 // in order tree walk
