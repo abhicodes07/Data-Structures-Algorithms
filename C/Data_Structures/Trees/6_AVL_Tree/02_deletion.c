@@ -130,10 +130,10 @@ TreeNode *deleteNode(TreeNode *root, int key) {
       free(root);
       return temp;
     } else {
-      TreeNode *rightChild = root->right;
       TreeNode *predecessor = findPredecessor(root->left);
-      predecessor->right = rightChild;
-      temp = root->left;
+      root->data = predecessor->data;
+      root->left = deleteNode(root->left, predecessor->data);
+      temp = root;
     }
   }
 
@@ -176,8 +176,8 @@ void inOrderWalk(const TreeNode *root) {
 void freeTree(TreeNode *root) {
   if (root) {
     freeTree(root->left);
-    free(root);
     freeTree(root->right);
+    free(root);
   }
 }
 
@@ -197,27 +197,27 @@ int main(int argc, char *argv[]) {
 
   // delete node with two children
   printf("Node to be deleted: %d\n", 11);
-  deleteNode(root, 11);
+  root = deleteNode(root, 11);
   printf("New In-order after deletion: [ ");
   inOrderWalk(root);
   printf("]\n");
 
   printf("Node to be deleted: %d\n", 19);
-  deleteNode(root, 19);
+  root = deleteNode(root, 19);
   printf("New In-order after deletion: [ ");
   inOrderWalk(root);
   printf("]\n");
 
   // delete leaf node
   printf("Node to be deleted: %d\n", 20);
-  deleteNode(root, 20);
+  root = deleteNode(root, 20);
   printf("New In-order after deletion: [ ");
   inOrderWalk(root);
   printf("]\n");
 
   // delete with only one children
   printf("Node to be deleted: %d\n", 17);
-  deleteNode(root, 17);
+  root = deleteNode(root, 17);
   printf("New In-order after deletion: [ ");
   inOrderWalk(root);
   printf("]\n");
