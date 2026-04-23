@@ -47,11 +47,11 @@ int getBalanceFactor(TreeNode *node) {
 //      T2  T3                      T1  T2
 TreeNode *leftRotate(TreeNode *x) {
   TreeNode *y = x->right;
-  TreeNode *T3 = y->right;
+  TreeNode *T2 = y->left;
 
   // perform rotation
   y->left = x;
-  x->right = T3;
+  x->right = T2;
 
   // update height
   updateHeight(y);
