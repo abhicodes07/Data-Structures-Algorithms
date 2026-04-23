@@ -15,6 +15,13 @@ int getHeight(const TreeNode *);
 // get maximum of height between left and right
 int max(int, int);
 
+// function to find in-order predecessor of a node
+TreeNode *findPredecessor(TreeNode *);
+
+// helper function for deleting a node
+// and link updation
+TreeNode *helper(TreeNode *);
+
 // update height
 void updateHeight(TreeNode *);
 
@@ -29,6 +36,9 @@ TreeNode *rightRotate(TreeNode *);
 
 // create tree
 TreeNode *insertNode(TreeNode *, int);
+
+// delete node
+TreeNode *deleteNode(TreeNode *, int);
 
 // inorder treewalk
 void inOrderWalk(const TreeNode *);
