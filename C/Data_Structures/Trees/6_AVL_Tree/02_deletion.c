@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// ── Tree operations ─────────────────────────────────────────────────────────
 // initialize treenode
 TreeNode *initNode(int data) {
   TreeNode *newnode = malloc(sizeof(*newnode));
@@ -16,6 +17,7 @@ TreeNode *initNode(int data) {
   return newnode;
 }
 
+// ── AVL helpers ────────────────────────────────────────────────────────────
 // get node height
 int getHeight(const TreeNode *node) { return (!node) ? 0 : node->height; }
 
@@ -32,6 +34,7 @@ int getBalanceFactor(TreeNode *node) {
   return (!node) ? 0 : getHeight(node->left) - getHeight(node->right);
 }
 
+// ── AVL operations ─────────────────────────────────────────────────────────
 // left rotation
 TreeNode *leftRotate(TreeNode *x) {
   TreeNode *y = x->right;
@@ -60,7 +63,7 @@ TreeNode *rightRotate(TreeNode *x) {
   return y;
 }
 
-// insert a node in a tree
+// ── insert node ──────────────────────────────────────────────────────────────
 TreeNode *insertNode(TreeNode *root, int key) {
   if (!root)
     return initNode(key);
@@ -100,7 +103,7 @@ TreeNode *insertNode(TreeNode *root, int key) {
   return root;
 }
 
-// find the in order predecessor
+// ── find in order predecessor ────────────────────────────────────────────────
 TreeNode *findPredecessor(TreeNode *root) {
   TreeNode *curr = root;
   while (curr && curr->right != NULL) {
@@ -109,18 +112,24 @@ TreeNode *findPredecessor(TreeNode *root) {
   return curr;
 }
 
-// delete a node
+// ── delete node ──────────────────────────────────────────────────────────────
 TreeNode *deleteNode(TreeNode *root, int key) {
   if (!root)
     return NULL;
 
   TreeNode *temp;
 
+  // search the right-subtree
   if (root->data < key) {
     root->right = deleteNode(root->right, key);
-  } else if (root->data > key) {
+  }
+  // search left-subtree
+  else if (root->data > key) {
     root->left = deleteNode(root->left, key);
-  } else {
+  }
+  // perform deletion
+  else {
+    // node with single child case
     if (root->left == NULL) {
       temp = root->right;
       free(root);
@@ -129,9 +138,16 @@ TreeNode *deleteNode(TreeNode *root, int key) {
       temp = root->left;
       free(root);
       return temp;
-    } else {
+    }
+    // node with two children case
+    else {
+      // find in-order predecessor of nodeToBeDeleted
       TreeNode *predecessor = findPredecessor(root->left);
+
+      // copy the predecessor into the nodeToBeDeleted
       root->data = predecessor->data;
+
+      // delete the predecessor
       root->left = deleteNode(root->left, predecessor->data);
     }
   }
@@ -144,25 +160,68 @@ TreeNode *deleteNode(TreeNode *root, int key) {
   int balance_factor = getBalanceFactor(root);
 
   // perform rotation if unbalanced
+
+  // NOTE: the right-right case:
+  // balance_factor < -1 means that the root is right heavy
+  // and getBalanceFactor(root->right) <= 0 means that the root's right child is
+  // also right heavy so we perform left rotation.
+  // Also, balance_factor(root->right) == 0 can happen during
+  // node deletion
+  // eg:
+  //  15 (BF = -2)  <- Root is unbalanced, right-heavy
+  //    \
+  //    20 (BF = -1) <- Right child is also right-heavy (<= 0)
+  //     \
+  //     30 (BF = 0)
   if (balance_factor < -1 && getBalanceFactor(root->right) <= 0)
     return leftRotate(root);
 
+  //  NOTE: the right-left case:
+  // balance_factor < -1 means that the root is right heavy
+  // but getBalanceFactor(root->right) > 0 means that the right child leans left
+  // creating a zig-zag. so we perform right-left rotation
+  // eg:
+  //  15 (BF = -2)  <- Root is unbalanced
+  //   \
+  //    30 (BF = 1)  <- Right child is left-heavy (> 0)
+  //   /
+  // 20 (BF = 0)
   if (balance_factor < -1 && getBalanceFactor(root->right) > 0) {
     root->right = rightRotate(root->right);
     return leftRotate(root);
   }
 
+  // NOTE: the left-right case:
+  // balance_factor > 1 means that the root is left-heavy
+  // and getBalanceFactor(root->left) < 0 means that the root->left is leaning
+  // to right creating a zig-zag. so we perfrom left-right rotation eg:
+  //     30 (BF = 2)   <- Root is unbalanced
+  //    /
+  //  15 (BF = -1)      <- Left child is right-heavy (< 0)
+  //   \
+  //    20 (BF = 0)
   if (balance_factor > 1 && getBalanceFactor(root->left) < 0) {
     root->left = leftRotate(root->left);
     return rightRotate(root);
   }
 
+  // NOTE: the left-left case
+  // balance_factor > 1 means that the root is left-heavy and
+  // getBalanceFactor(root->left) >= 1 means that the left-child is also
+  // left heavy or balanced (>=0) so we perfrom right-rotation
+  // eg:
+  //       30 (BF = 2)   <- Root is unbalanced
+  //      /
+  //    20 (BF = 1)       <- Left child is left-heavy (>= 0)
+  //    /
+  //  15 (BF = 0)
   if (balance_factor > 1 && getBalanceFactor(root->left) >= 0)
     return rightRotate(root);
 
   return root;
 }
 
+// ── Print and free tree ──────────────────────────────────────────────────────
 // in order tree walk
 void inOrderWalk(const TreeNode *root) {
   if (root) {
@@ -181,7 +240,7 @@ void freeTree(TreeNode *root) {
   }
 }
 
-// main
+// ── main ─────────────────────────────────────────────────────────────────────
 int main(int argc, char *argv[]) {
   int list[] = {14, 11, 19, 7, 12, 17, 50, 4, 8, 13, 16, 20, 60};
   int size = sizeof(list) / sizeof(list[0]);
