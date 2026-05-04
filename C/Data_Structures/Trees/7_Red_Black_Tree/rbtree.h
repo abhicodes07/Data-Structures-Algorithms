@@ -52,7 +52,7 @@ typedef struct rbTree {
   ((rbt)->root.left == &(rbt)->nil && (rbt)->root.right == &(rbt)->nil)
 
 #define RB_APPLY(rbt, f, c, o)                                                 \
-  rbapply_node((rbt), (rbt)->root.left, (f), (c), (o))
+  rbTreeApply((rbt), (rbt)->root.left, (f), (c), (o))
 
 /* initialize treenode */
 rbNode *rbTreeInitNode(rbNode *parent, int data);
@@ -63,12 +63,12 @@ rbTree *rbTreeCreate(int (*compare_func)(const void *, const void *),
 void rbTreeDestroy(rbTree *rbt);
 
 /* predecessor and successor */
-rbNode *rbTreePredecessor(const rbTree *tree, rbNode *node);
-rbNode *rbTreeSuccessor(const rbTree *tree, rbNode *node);
+rbNode *rbTreePredecessor(rbTree *tree, rbNode *node);
+rbNode *rbTreeSuccessor(rbTree *tree, rbNode *node);
 
 /* apply node*/
-int rb_apply_node(rbTree *rbt, rbNode *node, int (*func)(void *, void *),
-                  void *cookie, rbTraversal order);
+int rbTreeApply(rbTree *rbt, rbNode *node, int (*func)(void *, void *),
+                void *cookie, rbTraversal order);
 void rbTreePrint(rbTree *rbt, void (*print_func)(void *));
 
 /* insert and delete node */
