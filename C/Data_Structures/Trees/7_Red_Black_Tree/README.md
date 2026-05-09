@@ -1,7 +1,7 @@
 ```text
             root
           /     \
-      parent    parent's sibling (Grandparent of current)
+      parent    parent's sibling (uncle of current)
       /    \
   current   NIL
   /     \
@@ -9,7 +9,7 @@ NIL     NIL
 
 ```
 
-- Grandparent : Parent's parent `x->parent->parent`.
+- Grandparent : Parent's parent `current->parent->parent`.
 - Uncle : Sibling of parent
-  - if parent is left-child of Grandparent then uncle is `x->parent->parent->right`
-  - if parent is right-child of Grandparent then uncle is `x->parent->parent->left`
+  - if parent is left-child of Grandparent then uncle is `current->parent->parent->right`
+  - if parent is right-child of Grandparent then uncle is `current->parent->parent->left`
