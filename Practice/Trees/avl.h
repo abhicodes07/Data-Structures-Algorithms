@@ -10,7 +10,7 @@ TreeNode *initNode(int);
 int getHeight(const TreeNode *);
 void updateHeight(TreeNode *);
 int max(int, int);
-int getBalanceFactor(TreeNode *);
+int getBalanceFactor(const TreeNode *);
 TreeNode *findPredecessor(TreeNode *);
 TreeNode *leftRotate(TreeNode *);
 TreeNode *rightRotate(TreeNode *);
