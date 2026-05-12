@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2026 Abhinav.
+ * May be freely redistributed, but copyright notice must be retained.
+ * https://github.com/abhicodes07
+ */
+
 #include "rbtree.h"
 #include <stdio.h>
 #include <stdlib.h>

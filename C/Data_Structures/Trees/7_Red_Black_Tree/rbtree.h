@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2026 abhi9av. All Rights Reserved.
+ * Copyright (c) 2026 Abhinav.
  * May be freely redistributed, but copyright notice must be retained.
  * https://github.com/abhicodes07
  */
