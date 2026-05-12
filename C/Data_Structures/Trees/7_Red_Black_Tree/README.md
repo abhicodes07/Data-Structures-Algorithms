@@ -12,23 +12,7 @@
 4. If a node is **Red**, then both it's children are **Black**.
 5. For each node, all simple paths from the node to descendant leaves `NIL` contains the same number of **Black** nodes.
 
-## Insertion and Deletion in Red-Black Trees
-
-We can insert or delete a node in Red-Black tree same as Binary search tree by maintaining the Binary search property (aka order property).
-
-Binary search property states that the key in each node must be greater than or equal to any key stored in the left subtree, and less than or equal to any key in the right subtree.
-
-```
-left <= root <= right
-```
-
-We then call an auxiliary procedure to preserve the Red-Black properties if violated by recoloring nodes and performing necessary rotations.
-
-## Insertion
-
-While inserting a new node, it is always inserted as a **Red** node. After insertion of a newnode, if the tree is violating the properties of the Red Black tree then we perform recoloring and rotation operations.
-
-### Insertion in simple binary search tree
+## Tree and Node Structure
 
 Node structure:
 
@@ -40,6 +24,25 @@ typedef struct rbNode {
   rbColor color;         // enum color of the node, RED (0) and Black (1)
   void *data;            // generic: tree can store any dtype
 } rbNode;
+```
+
+Tree Structure:
+
+```c
+typedef struct rbTree {
+  int (*compare)(const void *, const void *); // comparator like strcmp
+  void (*print)(void *);                      // print (optional)
+  void (*destroy)(void *);                    // destructor
+
+  rbNode root; // sentinal root (actual data starts at root.left)
+  rbNode nil;  // sentinal NIL (leaf nodes, always black)
+
+  // pointer to minimum node if enabled
+#ifdef RB_MIN
+  rbNode *min;
+#endif
+} rbTree;
+
 ```
 
 The tree maintains two sentinel nodes for efficiency:
@@ -59,6 +62,29 @@ NIL    NIL
 
 ```
 
-Procedure:
+## Methods overview
 
--
+| Function                 | Uses                                                     |
+| ------------------------ | -------------------------------------------------------- |
+| `rbTreeCreate`           | Initialize a new red-black tree                          |
+| `rbTreeDestroy`          | Free the entire tree (calls `destroy` on each data)      |
+| `rbTreeFind`             | Search for a node                                        |
+| `rbTreeInsert`           | Insert new data                                          |
+| `rbTreeDelete`           | Delete a node                                            |
+| `rbTreeSuccessor`        | Successor of a given node                                |
+| `rbTreeApply`            | Traverse subtree applying a function (PRE/IN/POST order) |
+| `rbTreePrint`            | Print the tree                                           |
+| `rbTreeCheckOrder`       | Verify BST property                                      |
+| `rbTreeCheckBlackHeight` | Verify red-black black-height property                   |
+
+## Insertion and Deletion in Red-Black Trees
+
+We can insert or delete a node in Red-Black tree same as Binary search tree by maintaining the Binary search property (aka order property).
+
+Binary search property states that the key in each node must be greater than or equal to any key stored in the left subtree, and less than or equal to any key in the right subtree.
+
+```
+left <= root <= right
+```
+
+We then call an auxiliary procedure to preserve the Red-Black properties if violated by recoloring nodes and performing necessary rotations.
