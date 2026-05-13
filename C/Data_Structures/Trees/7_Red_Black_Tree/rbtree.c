@@ -299,7 +299,7 @@ void insertFixUp(rbTree *rbt, rbNode *current) {
         leftRotate(rbt, grandparent);
       }
     }
-  } while (current->parent->color == RED);
+  } while (current->parent->color == RED && current->parent != RB_ROOT(rbt));
 }
 
 /* check BST property of the tree ────────────────────────────────────────── */
@@ -343,6 +343,9 @@ int checkBlackHeight(rbTree *rbt, rbNode *n) {
     return 0;
 
   if ((lbh = checkBlackHeight(rbt, n->left)) == 0)
+    return 0;
+
+  if ((rbh = checkBlackHeight(rbt, n->right)) == 0)
     return 0;
 
   if (lbh != rbh)
