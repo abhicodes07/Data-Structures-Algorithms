@@ -1,0 +1,40 @@
+/**
+ * Copyright (c) 2026 Abhinav.
+ * May be freely redistributed, but copyright notice must be retained.
+ * https://github.com/abhicodes07
+ */
+
+#include "rbtree.h"
+#include "rbtree_data.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+  rbTree *rbt;
+  rbt = rbTreeCreate(compareFunc, destroyFunc);
+
+  /* initialize a red-black tree*/
+  if (rbt == NULL) {
+    fprintf(stderr, "initialization of red-black tree failed\n");
+    return 1;
+  }
+
+  /* insert items */
+  char a[] = {'R', 'E', 'D', 'B', 'L', 'A', 'C', 'K', 'T'};
+  int size = sizeof(a) / sizeof(a[0]);
+
+  myData *data;
+  for (int i = 0; i < size; i++) {
+    if ((data = makeData(a[i])) == NULL || rbTreeInsert(rbt, data) == NULL) {
+      fprintf(stderr, "Insert %c: Out of memory\n", a[i]);
+      free(data);
+      break;
+    }
+    printf("Insert %c", a[i]);
+    rbTreePrint(rbt, printCharFunc);
+    printf("\n");
+  }
+
+  rbTreeDestroy(rbt);
+  return EXIT_SUCCESS;
+}

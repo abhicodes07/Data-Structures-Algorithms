@@ -46,7 +46,7 @@ rbTree *rbTreeCreate(int (*compare)(const void *, const void *),
 }
 
 /* tree destructor ───────────────────────────────────────────────────────── */
-void rbDestroy(rbTree *rbt) {
+void rbTreeDestroy(rbTree *rbt) {
   destroy(rbt, RB_FIRST(rbt));
   free(rbt);
 }
@@ -287,6 +287,7 @@ void insertFixUp(rbTree *rbt, rbNode *current) {
         uncle->color = BLACK;
         current->parent->color = BLACK;
         current = grandparent;
+        current->color = RED;
       } else {
         if (current == current->parent->left) {
           current = current->parent;
