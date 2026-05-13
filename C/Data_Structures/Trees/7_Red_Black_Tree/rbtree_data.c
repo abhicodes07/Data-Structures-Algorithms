@@ -25,7 +25,7 @@ int compareFunc(const void *d1, const void *d2) {
   assert(d2 != NULL);
 
   p1 = (myData *)d1;
-  p2 = (myData *)p2;
+  p2 = (myData *)d2;
 
   if (p1->key == p2->key)
     return 0;
@@ -57,5 +57,5 @@ void printCharFunc(void *d) {
   assert(d != NULL);
   p = (myData *)d;
   // convert integer to printable ASCII character
-  printf("%c\n", (char)p->key);
+  printf("%c", p->key & 127);
 }

@@ -24,7 +24,7 @@ rbTree *rbTreeCreate(int (*compare)(const void *, const void *),
                      void (*destroy)(void *)) {
   rbTree *rbt;
 
-  rbt = malloc(sizeof(*rbt));
+  rbt = (rbTree *)malloc(sizeof(rbTree));
 
   // out of memory
   if (rbt == NULL)
@@ -36,6 +36,11 @@ rbTree *rbTreeCreate(int (*compare)(const void *, const void *),
   // sentinal nil node pointing to itself
   rbt->nil.left = rbt->nil.right = rbt->nil.parent = RB_NIL(rbt);
   rbt->nil.color = BLACK;
+  rbt->nil.data = NULL;
+
+  // sentinal root node
+  rbt->root.left = rbt->root.right = rbt->root.parent = RB_NIL(rbt);
+  rbt->root.color = BLACK;
   rbt->root.data = NULL;
 
 #ifdef RB_MIN
@@ -230,7 +235,7 @@ rbNode *rbTreeInsert(rbTree *rbt, void *data) {
 
 /* updated minimum if pointer to the minimum node is enabled */
 #ifdef RB_MIN
-  if (rbt->min == NULL || rbt->compare(current->data, rbt->min->data))
+  if (rbt->min == NULL || rbt->compare(current->data, rbt->min->data) < 0)
     rbt->min = current;
 #endif /* ifdef RB_MIN */
 
@@ -239,7 +244,6 @@ rbNode *rbTreeInsert(rbTree *rbt, void *data) {
    */
   if (current->parent->color == RED) {
     insertFixUp(rbt, current);
-  } else {
   }
 
   /* root is always black */
@@ -253,22 +257,18 @@ void insertFixUp(rbTree *rbt, rbNode *current) {
   /* right-child of grand-parent */
   rbNode *uncle;
 
-  /* parent's parent */
-  rbNode *grandparent;
-  grandparent = current->parent->parent;
-
   /* both current and parent node are RED
    * violation of RED-BLACK property
    */
   do {
-    /* if parent of current is left-child of grandparent */
-    if (current->parent == grandparent->left) {
-      uncle = grandparent->right;
+    /* if parent of current is left-child of current->parent->parent */
+    if (current->parent == current->parent->parent->left) {
+      uncle = current->parent->parent->right;
       if (uncle->color == RED) {
         current->parent->color = BLACK;
         uncle->color = BLACK;
 
-        current = grandparent;
+        current = current->parent->parent;
         current->color = RED;
       } else {
         if (current == current->parent->right) {
@@ -277,16 +277,17 @@ void insertFixUp(rbTree *rbt, rbNode *current) {
         }
 
         current->parent->color = BLACK;
-        grandparent->color = RED;
-        rightRotate(rbt, grandparent);
+        current->parent->parent->color = RED;
+        rightRotate(rbt, current->parent->parent);
       }
     } else {
-      uncle = grandparent->left;
+      uncle = current->parent->parent->left;
 
       if (uncle->color == RED) {
-        uncle->color = BLACK;
         current->parent->color = BLACK;
-        current = grandparent;
+        uncle->color = BLACK;
+
+        current = current->parent->parent;
         current->color = RED;
       } else {
         if (current == current->parent->left) {
@@ -295,8 +296,8 @@ void insertFixUp(rbTree *rbt, rbNode *current) {
         }
 
         current->parent->color = BLACK;
-        grandparent->color = RED;
-        leftRotate(rbt, grandparent);
+        current->parent->parent->color = RED;
+        leftRotate(rbt, current->parent->parent);
       }
     }
   } while (current->parent->color == RED && current->parent != RB_ROOT(rbt));
@@ -310,7 +311,7 @@ int rbTreeCheckOrder(rbTree *rbt, void *min, void *max) {
 /* check BST property recursively ────────────────────────────────────────── */
 int checkOrder(rbTree *rbt, rbNode *n, void *min, void *max) {
   if (n == RB_NIL(rbt))
-    return 0;
+    return 1;
 
 #ifdef RB_DUP
   if (rbt->compare(n->data, min) < 0 || rbt->compare(n->data, max) > 0)
