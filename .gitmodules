@@ -1,0 +1,3 @@
+[submodule "avl-trees"]
+	path = avl-trees
+	url = https://github.com/abhicodes07/avl-trees.git

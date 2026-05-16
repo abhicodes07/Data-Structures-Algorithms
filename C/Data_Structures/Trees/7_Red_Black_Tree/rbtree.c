@@ -56,9 +56,7 @@ void rbTreeDestroy(rbTree *rbt) {
   free(rbt);
 }
 
-/*
- * find node in tree
- */
+/*  find node in tree ────────────────────────────────────────────────────── */
 rbNode *rbTreeFind(rbTree *rbt, void *data) {
   rbNode *p;
   p = RB_FIRST(rbt);
@@ -363,15 +361,23 @@ void rbTreePrint(rbTree *rbt, void (*print_func)(void *)) {
 }
 
 /* print nodes recursively ───────────────────────────────────────────────── */
+/* print_func: takes a function for printing character based or integer based
+ * data
+ */
 void print(rbTree *rbt, rbNode *n, void (*print_func)(void *), int depth,
            char *label) {
   if (n != RB_NIL(rbt)) {
+    // traverse right subtree
     print(rbt, n->right, print_func, depth + 1, "R");
+
+    // print data
     printf("%*s", 8 * depth, "");
     if (label)
       printf("%s: ", label);
     print_func(n->data);
     printf(" (%s)\n", n->color == RED ? "r" : "b");
+
+    // traverse left subtree
     print(rbt, n->left, print_func, depth + 1, "L");
   }
 }
