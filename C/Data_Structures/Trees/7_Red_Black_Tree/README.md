@@ -12,6 +12,15 @@
 4. If a node is **Red**, then both it's children are **Black**.
 5. For each node, all simple paths from the node to descendant leaves `NIL` contains the same number of **Black** nodes.
 
+## File structure
+
+- `rbtree.c` : red-black tree library file
+- `rbtree.h` : red-black tree header file
+- `rbtree_data.c` : red-black tree data header file
+- `rbtree_data.h` : red-black tree data processing library
+- `main.c` : example application of red-black tree
+- `README.md` : Notes
+
 ## Tree and Node Structure
 
 Node structure:
@@ -37,9 +46,8 @@ typedef struct rbTree {
   rbNode root; // sentinal root (actual data starts at root.left)
   rbNode nil;  // sentinal NIL (leaf nodes, always black)
 
-  // pointer to minimum node if enabled
 #ifdef RB_MIN
-  rbNode *min;
+  rbNode *min; // pointer to minimum node if enable
 #endif
 } rbTree;
 
@@ -62,9 +70,9 @@ NIL    NIL
 
 ```
 
-## Methods overview
+## Method overview
 
-| Function                 | Uses                                                     |
+| Function                 | Use Cases                                                |
 | ------------------------ | -------------------------------------------------------- |
 | `rbTreeCreate`           | Initialize a new red-black tree                          |
 | `rbTreeDestroy`          | Free the entire tree (calls `destroy` on each data)      |
