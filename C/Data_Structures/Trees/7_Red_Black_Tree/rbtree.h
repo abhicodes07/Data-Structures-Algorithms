@@ -31,8 +31,8 @@ typedef struct rbTree {
   void (*print)(void *);                      // print (optional)
   void (*destroy)(void *);                    // destructor
 
-  rbNode root; // sentinal root (actual data starts at root.left)
-  rbNode nil;  // sentinal NIL (leaf nodes, always black)
+  rbNode root; // sentinel root (actual data starts at root.left)
+  rbNode nil;  // sentinel NIL (leaf nodes, always black)
 
 #ifdef RB_MIN
   // pointer to minimum node if enabled
