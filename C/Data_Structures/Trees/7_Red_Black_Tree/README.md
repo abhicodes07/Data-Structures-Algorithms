@@ -96,3 +96,12 @@ left <= root <= right
 ```
 
 We then call an auxiliary procedure to preserve the Red-Black properties if violated by recoloring nodes and performing necessary rotations.
+
+**Procedure**
+
+1. If tree is empty, create newnode as rootnode with color black.
+2. If tree is not empty, create newnode as leaf node with color Red.
+3. If parent of newnode is black, then no recoloring or rotation is needed, exit.
+4. If parent of newnode is Red, then check the color of parent's sibling of newnode
+   - If node is Black or `NIL` then do suitable rotation & recolor.
+   - If color is Red then recolor and also check if parent's parent (grandparent of newnode) is not root node then recolor it & recheck.
