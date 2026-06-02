@@ -1,3 +1,6 @@
 [submodule "avl-trees"]
 	path = avl-trees
 	url = https://github.com/abhicodes07/avl-trees.git
+[submodule "binary-search-trees"]
+	path = binary-search-trees
+	url = https://github.com/abhicodes07/binary-search-trees.git
