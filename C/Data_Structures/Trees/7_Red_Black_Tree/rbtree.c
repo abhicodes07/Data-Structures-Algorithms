@@ -33,12 +33,12 @@ rbTree *rbTreeCreate(int (*compare)(const void *, const void *),
   rbt->compare = compare;
   rbt->destroy = destroy;
 
-  // sentinal nil node pointing to itself
+  // sentinel nil node pointing to itself
   rbt->nil.left = rbt->nil.right = rbt->nil.parent = RB_NIL(rbt);
   rbt->nil.color = BLACK;
   rbt->nil.data = NULL;
 
-  // sentinal root node
+  // sentinel root node
   rbt->root.left = rbt->root.right = rbt->root.parent = RB_NIL(rbt);
   rbt->root.color = BLACK;
   rbt->root.data = NULL;
@@ -191,7 +191,8 @@ rbNode *rbTreeInsert(rbTree *rbt, void *data) {
     cmp = rbt->compare(data, current->data);
 
     /* if duplicate values are allowed then
-     * update the new data with duplicate one
+     * update the new data by destroying the
+     * previous one
      */
 #ifndef RB_DUP
     if (cmp == 0) {
@@ -262,6 +263,14 @@ void insertFixUp(rbTree *rbt, rbNode *current) {
     /* if parent of current is left-child of current->parent->parent */
     if (current->parent == current->parent->parent->left) {
       uncle = current->parent->parent->right;
+
+      /* if color of uncle is Red then recolor & also check if parent's
+       * parent (grandparent) of newnode is not rootnode then recolor it
+       * & recheck
+       *
+       * (else) if color of uncle is Black then do suitable rotation and
+       * recolor
+       */
       if (uncle->color == RED) {
         current->parent->color = BLACK;
         uncle->color = BLACK;
@@ -299,6 +308,131 @@ void insertFixUp(rbTree *rbt, rbNode *current) {
       }
     }
   } while (current->parent->color == RED && current->parent != RB_ROOT(rbt));
+}
+
+/* delete node  ────────────────────────────────────────── */
+void *rbTreeDelete(rbTree *rbt, rbNode *node, int keep) {
+  rbNode *target, *child;
+  void *data;
+
+  data = node->data;
+
+  /* get node's inorder successor if it has two children */
+  if (node->left == RB_NIL(rbt) || node->right == RB_NIL(rbt)) {
+    target = node;
+#ifdef RB_MIN
+    if (rbt->min == target)
+      rbt->min = rbTreeSuccessor(rbt, target);
+#endif /* ifdef RB_MIN */
+  } else {
+    target = rbTreeSuccessor(rbt, node);
+
+    /* swap the data of node to be deleted with it's successor */
+    node->data = target->data;
+
+#ifdef RB_MIN
+    /* if min == node, i.e., nodeToBeDeleted is minimum then
+     * min = successor = node (swapped), thus idle */
+    /* if min == target, then min = successor, which is not the minimal, thus
+     * impossible */
+#endif /* ifdef RB_MIN */
+  }
+
+  // this is the nil node that replaces the successor which is going to be
+  // double black
+  child = (target->left == RB_NIL(rbt) ? target->right : target->left);
+
+  if (target->color == BLACK) {
+    if (child->color == BLACK) {
+      deleteFixUp(rbt, target);
+    }
+  }
+
+  if (child != RB_NIL(rbt))
+    child->parent = target->parent;
+
+  /* replace the target (whose value was swapped with node to be deleted) with
+   * it's child */
+  if (target == target->parent->left)
+    target->parent->left = child;
+  else
+    target->parent->right = child;
+
+  /* free target */
+  free(target);
+
+  /* destroy data in case user doesn't want to preserve it */
+  if (keep == 0) {
+    rbt->destroy(data);
+    data = NULL;
+  }
+
+  return data;
+}
+
+/* fix tree after deletion ───────────────────────────────────────────────── */
+void deleteFixUp(rbTree *rbt, rbNode *current) {
+  rbNode *sibling;
+
+  do {
+    if (current == current->parent->left) {
+      sibling = current->parent->right;
+
+      if (sibling->color == RED) {
+        sibling->color = BLACK;
+        current->parent->color = RED;
+        leftRotate(rbt, current->parent);
+        sibling = current->parent->right;
+      }
+
+      if (sibling->right->color == BLACK && sibling->left->color == BLACK) {
+        sibling->color = RED;
+        current = current->parent;
+      } else {
+        /* case 3 */
+        if (sibling->right->color == BLACK) {
+          sibling->left->color = BLACK;
+          sibling->color = RED;
+          rightRotate(rbt, sibling);
+          sibling = current->parent->right;
+        }
+
+        /* case 4 */
+        sibling->color = current->parent->color;
+        current->parent->color = BLACK;
+        sibling->right->color = BLACK;
+        leftRotate(rbt, current->parent);
+        break;
+      }
+    } else {
+      sibling = current->parent->left;
+
+      if (sibling->color == RED) {
+        sibling->color = BLACK;
+        current->parent->color = RED;
+        rightRotate(rbt, current->parent);
+        sibling = current->parent->left;
+      }
+
+      if (sibling->right->color == BLACK && sibling->left->color == BLACK) {
+        sibling->color = RED;
+        current = current->parent;
+      } else {
+        if (sibling->left->color == BLACK) {
+          sibling->right->color = BLACK;
+          sibling->color = RED;
+          leftRotate(rbt, sibling);
+          sibling = current->parent->left;
+        }
+
+        sibling->color = current->parent->color;
+        current->parent->color = BLACK;
+        sibling->left->color = BLACK;
+        rightRotate(rbt, current->parent);
+        break;
+      }
+    }
+  } while (current != RB_NIL(rbt));
 }
 
 /* check BST property of the tree ────────────────────────────────────────── */

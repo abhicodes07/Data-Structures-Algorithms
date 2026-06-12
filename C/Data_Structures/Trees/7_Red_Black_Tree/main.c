@@ -35,6 +35,25 @@ int main(int argc, char *argv[]) {
     printf("\n");
   }
 
+  /* delete items */
+  rbNode *node;
+  myData query;
+  query.key = 'B';
+  printf("Delete %c", query.key);
+  node = rbTreeFind(rbt, &query);
+  if (node != NULL)
+    rbTreeDelete(rbt, node, 0);
+  rbTreePrint(rbt, printCharFunc);
+
+#ifdef RB_MIN
+  while ((node = RB_MINIMAL(rbt))) {
+    printf("\ndelete ");
+    printCharFunc(node->data);
+    rbTreeDelete(rbt, node, 0);
+    rbTreePrint(rbt, printCharFunc);
+  }
+#endif
+
   rbTreeDestroy(rbt);
   return EXIT_SUCCESS;
 }
