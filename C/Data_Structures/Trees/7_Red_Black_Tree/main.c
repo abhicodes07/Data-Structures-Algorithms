@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* main */
 int main(int argc, char *argv[]) {
   rbTree *rbt;
   rbt = rbTreeCreate(compareFunc, destroyFunc);
@@ -45,14 +46,15 @@ int main(int argc, char *argv[]) {
     rbTreeDelete(rbt, node, 0);
   rbTreePrint(rbt, printCharFunc);
 
-#ifdef RB_MIN
-  while ((node = RB_MINIMAL(rbt))) {
-    printf("\ndelete ");
-    printCharFunc(node->data);
-    rbTreeDelete(rbt, node, 0);
-    rbTreePrint(rbt, printCharFunc);
-  }
-#endif
+  /* test deletion */
+  // #ifdef RB_MIN
+  //   while ((node = RB_MINIMAL(rbt))) {
+  //     printf("\ndelete ");
+  //     printCharFunc(node->data);
+  //     rbTreeDelete(rbt, node, 0);
+  //     rbTreePrint(rbt, printCharFunc);
+  //   }
+  // #endif
 
   rbTreeDestroy(rbt);
   return EXIT_SUCCESS;
