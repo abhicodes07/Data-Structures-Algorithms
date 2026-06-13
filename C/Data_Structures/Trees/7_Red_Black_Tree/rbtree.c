@@ -406,8 +406,8 @@ void deleteFixUp(rbTree *rbt, rbNode *current) {
         current->parent->color = BLACK;
         sibling->right->color = BLACK;
         leftRotate(rbt, current->parent);
-        current = RB_FIRST(rbt);
-        // break;
+        current = RB_NIL(rbt);
+        break;
       }
     } else {
       sibling = current->parent->left;
@@ -439,8 +439,8 @@ void deleteFixUp(rbTree *rbt, rbNode *current) {
         current->parent->color = BLACK;
         sibling->left->color = BLACK;
         rightRotate(rbt, current->parent);
-        current = RB_FIRST(rbt);
-        // break;
+        current = RB_NIL(rbt);
+        break;
       }
     }
 
