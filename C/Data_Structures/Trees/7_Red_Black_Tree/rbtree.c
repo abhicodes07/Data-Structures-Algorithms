@@ -312,8 +312,11 @@ void insertFixUp(rbTree *rbt, rbNode *current) {
 
 /* delete node  ────────────────────────────────────────── */
 void *rbTreeDelete(rbTree *rbt, rbNode *node, int keep) {
-  rbNode *target, *child;
+  rbNode *target, *child, *fixup_node;
   void *data;
+
+  if (node == NULL || node == RB_NIL(rbt))
+    return NULL;
 
   data = node->data;
 
@@ -338,15 +341,10 @@ void *rbTreeDelete(rbTree *rbt, rbNode *node, int keep) {
 #endif /* ifdef RB_MIN */
   }
 
-  // this is the nil node that replaces the successor which is going to be
-  // double black
+  /* node that will replace the successor i.e. target (NIL or the only child) */
   child = (target->left == RB_NIL(rbt) ? target->right : target->left);
 
-  if (target->color == BLACK) {
-    if (child->color == BLACK) {
-      deleteFixUp(rbt, target);
-    }
-  }
+  fixup_node = child;
 
   if (child != RB_NIL(rbt))
     child->parent = target->parent;
@@ -357,6 +355,14 @@ void *rbTreeDelete(rbTree *rbt, rbNode *node, int keep) {
     target->parent->left = child;
   else
     target->parent->right = child;
+
+  /*If we removed a black node, we may have a double-black violation */
+  if (target->color == BLACK) {
+    deleteFixUp(rbt, fixup_node);
+  }
+
+  /* root must be black */
+  RB_FIRST(rbt)->color = BLACK;
 
   /* free target */
   free(target);
@@ -374,8 +380,10 @@ void *rbTreeDelete(rbTree *rbt, rbNode *node, int keep) {
 void deleteFixUp(rbTree *rbt, rbNode *current) {
   rbNode *sibling;
 
-  while (current != RB_NIL(rbt) && current->parent != RB_NIL(rbt) &&
-         current->color == BLACK) {
+  while (current != RB_NIL(rbt) && current->color == BLACK) {
+    if (current->parent == RB_NIL(rbt))
+      break;
+
     if (current == current->parent->left) {
       sibling = current->parent->right;
 
@@ -407,7 +415,6 @@ void deleteFixUp(rbTree *rbt, rbNode *current) {
         sibling->right->color = BLACK;
         leftRotate(rbt, current->parent);
         current = RB_NIL(rbt);
-        break;
       }
     } else {
       sibling = current->parent->left;
@@ -445,9 +452,8 @@ void deleteFixUp(rbTree *rbt, rbNode *current) {
     }
 
     /* root is always black */
-    if (current != RB_NIL(rbt)) {
+    if (current != RB_NIL(rbt))
       current->color = BLACK;
-    }
 
     RB_FIRST(rbt)->color = BLACK;
   }
