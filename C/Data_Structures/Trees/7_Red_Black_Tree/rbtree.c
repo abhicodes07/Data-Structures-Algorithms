@@ -374,10 +374,12 @@ void *rbTreeDelete(rbTree *rbt, rbNode *node, int keep) {
 void deleteFixUp(rbTree *rbt, rbNode *current) {
   rbNode *sibling;
 
-  do {
+  while (current != RB_NIL(rbt) && current->parent != RB_NIL(rbt) &&
+         current->color == BLACK) {
     if (current == current->parent->left) {
       sibling = current->parent->right;
 
+      /* case 1: sibling is red */
       if (sibling->color == RED) {
         sibling->color = BLACK;
         current->parent->color = RED;
@@ -385,11 +387,13 @@ void deleteFixUp(rbTree *rbt, rbNode *current) {
         sibling = current->parent->right;
       }
 
+      /* case 2: sibling and both it's children are black */
       if (sibling->right->color == BLACK && sibling->left->color == BLACK) {
         sibling->color = RED;
         current = current->parent;
       } else {
-        /* case 3 */
+        /* case 3: sibling is black, it's left child is red, right child is
+         * black */
         if (sibling->right->color == BLACK) {
           sibling->left->color = BLACK;
           sibling->color = RED;
@@ -402,11 +406,13 @@ void deleteFixUp(rbTree *rbt, rbNode *current) {
         current->parent->color = BLACK;
         sibling->right->color = BLACK;
         leftRotate(rbt, current->parent);
-        break;
+        current = RB_FIRST(rbt);
+        // break;
       }
     } else {
       sibling = current->parent->left;
 
+      /* case 1: sibling is red */
       if (sibling->color == RED) {
         sibling->color = BLACK;
         current->parent->color = RED;
@@ -414,10 +420,13 @@ void deleteFixUp(rbTree *rbt, rbNode *current) {
         sibling = current->parent->left;
       }
 
+      /* case 3: sibling and both its children are black */
       if (sibling->right->color == BLACK && sibling->left->color == BLACK) {
         sibling->color = RED;
         current = current->parent;
       } else {
+        /* case 3: sibling is black and its right child is red, left child is
+         * black */
         if (sibling->left->color == BLACK) {
           sibling->right->color = BLACK;
           sibling->color = RED;
@@ -425,14 +434,23 @@ void deleteFixUp(rbTree *rbt, rbNode *current) {
           sibling = current->parent->left;
         }
 
+        /* case 4: sibling is black, it's left child is red */
         sibling->color = current->parent->color;
         current->parent->color = BLACK;
         sibling->left->color = BLACK;
         rightRotate(rbt, current->parent);
-        break;
+        current = RB_FIRST(rbt);
+        // break;
       }
     }
-  } while (current != RB_NIL(rbt));
+
+    /* root is always black */
+    if (current != RB_NIL(rbt)) {
+      current->color = BLACK;
+    }
+
+    RB_FIRST(rbt)->color = BLACK;
+  }
 }
 
 /* check BST property of the tree ────────────────────────────────────────── */
