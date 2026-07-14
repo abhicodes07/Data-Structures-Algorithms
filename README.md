@@ -1,115 +1,18 @@
-# :rocket: Data Structures And Algorithm
+# 📊 Data Structures & Algorithms
 
-<!--toc:start-->
+Hi there! 👋
 
-- [:rocket: Data Structures And Algorithm](#rocket-data-structures-and-algorithm)
-  - [:notebook: What's Inside?](#notebook-whats-inside)
-  - [:pencil: Contents](#pencil-contents)
-  - [📈 Topics Covered](#📈-topics-covered)
-  <!--toc:end-->
+Welcome to my **Data Structures and Algorithms** repository. This repository consists of my implementations of fundamental and advanced concept of data structures and algorithms along with the some real world parctice problems.
 
-Welcome to the Data Structures and Algorithms repository! This repository consists of fundamental and advanced concepts, along with real-world coding problems to level up your problem-solving skills.
-
-## :notebook: What's Inside?
-
-- **Core Data Structures**
-  <p>Implementations of Arrays, Linked Lists, Stacks, Queues, Trees, Graphs, and more.</p>
-- **Algorithm Essentials**
-  <p>Delve into Sorting, Searching, Divide & Conquer, Greedy, and Dynamic Programming.</p>
-
-- **Notes and Resources**
-  <p>Notes and necessary Resources in Markdown and PDF format.</p>
-
-- **Multi-Language Support**
-  Codes implemented in:
-  - Python
-  - Java
-  - C++
-  - C
-
-## :pencil: Contents
-
-## 📈 Topics Covered
-
-<details><summary><b><i>Time Complexity</i></b></summary>
-
-- [x] Introduction
-- [x] Frequency Count Method
-- [x] Analysis of _For_ Loop
-- [x] Complexities of _For_ Loop
-- [x] Analysis of _if_ & _while_
-- [x] Types of function / Classes of Time function
-  - [x] Associativity
-- [x] Asymptotic Notations
-  - [x] Big-O Notation
-  - [x] Big-Ω Notation
-  - [x] Big-Θ Notation
-- [x] Properties of Asymptotic Notations
-  - [x] General Properties
-  - [x] Reflexive Property
-  - [x] Transitive Property
-  - [x] Symmetric Property
-  - [x] Transpose-Symmetric Property
-- [x] Comparison of Functions
-- [x] Case Analysis
-  - [x] Best-Case Analysis
-  - [x] Worst-Case Analysis
-  - [x] Average-Case Analysis
-- [x] Divide and Conquer
-  - [x] Divide
-  - [x] Conquer
-  - [x] Combine
+These implementations and files help me track my DSA journey but can serve as a useful starting point for others looking to streamline their journey.
 
 ---
 
-</details>
+<div align="center">
+  <img src="https://img.shields.io/badge/license-mit-ca9ee6?style=for-the-badge&labelColor=%23303446&link=https%3A%2F%2Fgithub.com%2Fabhicodes07%2FData-Structures-Algorithms%2Fblob%2Fmain%2FLICENSE" alt="LICENSE">
 
-<details><summary><b><i>Data Structures</i></b></summary>
+</div>
 
-- [x] Array
-  - [x] Insertion
-  - [x] Traversal
-  - [x] Deletion
-  - [x] Searching
-  - [x] Reverse
-- [x] Pointer and Arrays
-- [x] Introduction to 2-D Arrays
-- [x] Pointers and 2-D Arrays
-- [x] Linked List
-  - [x] Singly Linked List
-    - [x] Implementation
-    - [x] Insertion
-    - [x] Deletion
-    - [x] Traversal
-    - [x] Length
-    - [ ] Searching
-    - [x] Reverse
-  - [x] Doubly Linked List
-    - [x] Implementation
-    - [x] Insertion
-    - [x] Deletion
-    - [x] Traversal
-    - [x] Length
-    - [ ] Searching
-    - [x] Reverse
-  - [x] Circular Linked List
-    - [x] Implementation
-    - [x] Insertion
-    - [x] Deletion
-    - [x] Traversal
-    - [x] Length
-    - [ ] Searching
-    - [x] Reverse
-  - [x] Doubly Circular Linked List
-    - [x] Implementation
-    - [x] Insertion
-    - [x] Deletion
-    - [x] Traversal
-    - [x] Length
-    - [ ] Searching
-    - [ ] Reverse
-- [x] Stack
-  - [x] Stack using Array
-  - [x] Stack using Linked List
-
-</details>
+<p align="center">
+	Copyright &copy; 2026-present <a href="https://github.com/abhicodes07" target="_blank">Abhi9av</a>
+</p>
